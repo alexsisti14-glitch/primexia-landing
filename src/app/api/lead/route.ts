@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { GHL_API, fieldIdMap, ghlCreds, ghlHeaders, type FieldKey } from "@/lib/ghl";
+import { GHL_API, STAGE_NEW, fieldIdMap, ghlCreds, ghlHeaders, primexiaPipeline, type FieldKey } from "@/lib/ghl";
 
 /**
  * Lead endpoint → GoHighLevel (sub-account "PRIMEXIA METHOD").
@@ -190,6 +190,36 @@ export async function POST(req: Request) {
       if (!up.ok) throw new Error(`upsert ${up.status}: ${(await up.text()).slice(0, 300)}`);
       const data = (await up.json()) as { contact?: { id?: string } };
       if (data.contact?.id) {
+        // Opportunità nella pipeline PRIMEXIA METHOD, fase "Nuovo lead · Uomo/Donna" (solo se non esiste già)
+        try {
+          const pipe = await primexiaPipeline(token, locationId);
+          const stageId = pipe?.stages.get(STAGE_NEW[landing]);
+          if (pipe && stageId) {
+            const q = new URLSearchParams({ location_id: locationId, pipeline_id: pipe.pipelineId, contact_id: data.contact.id });
+            const found = await fetch(`${GHL_API}/opportunities/search?${q}`, { headers, cache: "no-store" });
+            const existing = found.ok ? ((await found.json()) as { opportunities?: unknown[] }).opportunities ?? [] : [];
+            if (existing.length === 0) {
+              const opp = await fetch(`${GHL_API}/opportunities/`, {
+                method: "POST",
+                headers,
+                body: JSON.stringify({
+                  locationId,
+                  pipelineId: pipe.pipelineId,
+                  pipelineStageId: stageId,
+                  contactId: data.contact.id,
+                  name: `${nome} · ${a.landing}`,
+                  status: "open",
+                  source: `Landing PRIMEXIA ${a.landing}`,
+                }),
+              });
+              if (!opp.ok) console.error("[lead] opportunità GHL fallita", opp.status, (await opp.text()).slice(0, 200));
+            }
+          } else {
+            console.error("[lead] pipeline PRIMEXIA METHOD o fase non trovata");
+          }
+        } catch (e) {
+          console.error("[lead] errore pipeline GHL", e);
+        }
         const note = await fetch(`${GHL_API}/contacts/${data.contact.id}/notes`, {
           method: "POST",
           headers,

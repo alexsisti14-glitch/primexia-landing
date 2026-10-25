@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { GHL_API, PRIMEXIA_FIELDS, ghlCreds, ghlHeaders, listContactFields } from "@/lib/ghl";
+import { GHL_API, PIPELINE_NAME, PIPELINE_STAGES, PRIMEXIA_FIELDS, ghlCreds, ghlHeaders, listContactFields, listPipelines } from "@/lib/ghl";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -40,5 +40,32 @@ export async function POST(req: Request) {
     const data = JSON.parse(txt) as { customField?: { id: string; fieldKey?: string } };
     report.push({ name: f.name, status: "creato", id: data.customField?.id, fieldKey: data.customField?.fieldKey });
   }
-  return NextResponse.json({ ok: true, report });
+  // Pipeline PRIMEXIA METHOD
+  let pipeline: unknown;
+  try {
+    const existingP = (await listPipelines(token, locationId)).find(
+      (x) => x.name.trim().toLowerCase() === PIPELINE_NAME.toLowerCase(),
+    );
+    if (existingP) {
+      pipeline = { status: "esistente", id: existingP.id, stages: existingP.stages.map((s) => s.name) };
+    } else {
+      const r = await fetch(`${GHL_API}/opportunities/pipelines`, {
+        method: "POST",
+        headers: ghlHeaders(token),
+        body: JSON.stringify({
+          locationId,
+          name: PIPELINE_NAME,
+          showInFunnel: true,
+          showInPieChart: true,
+          stages: PIPELINE_STAGES.map((name, position) => ({ name, position, showInFunnel: true, showInPieChart: true })),
+        }),
+      });
+      const txt = await r.text();
+      pipeline = r.ok ? { status: "creata", body: JSON.parse(txt) } : { status: `errore_${r.status}`, detail: txt.slice(0, 300) };
+    }
+  } catch (e) {
+    pipeline = { status: "errore", detail: String(e).slice(0, 300) };
+  }
+
+  return NextResponse.json({ ok: true, report, pipeline });
 }

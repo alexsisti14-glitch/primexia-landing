@@ -84,3 +84,44 @@ export async function fieldIdMap(token: string, locationId: string) {
   if (map.size === PRIMEXIA_FIELDS.length) cache = { at: Date.now(), map };
   return map;
 }
+
+/* ---------- Pipeline ---------- */
+export const PIPELINE_NAME = "PRIMEXIA METHOD";
+export const STAGE_NEW = { uomo: "Nuovo lead · Uomo", donna: "Nuovo lead · Donna" } as const;
+export const PIPELINE_STAGES = [
+  STAGE_NEW.uomo,
+  STAGE_NEW.donna,
+  "Contattato dal setter",
+  "Da ricontattare",
+  "Discovery acquistata (47 €)",
+  "Settimana di prova in corso",
+  "Call di chiusura fissata",
+  "Prenotazione pagata (250 €)",
+  "Cliente Method (saldo 2.872 €)",
+  "Perso / Non interessato",
+];
+
+type Pipeline = { id: string; name: string; stages: { id: string; name: string }[] };
+
+export async function listPipelines(token: string, locationId: string): Promise<Pipeline[]> {
+  const r = await fetch(`${GHL_API}/opportunities/pipelines?locationId=${locationId}`, {
+    headers: ghlHeaders(token),
+    cache: "no-store",
+  });
+  if (!r.ok) throw new Error(`pipelines ${r.status}: ${(await r.text()).slice(0, 200)}`);
+  return ((await r.json()) as { pipelines?: Pipeline[] }).pipelines ?? [];
+}
+
+let pipeCache: { at: number; pipelineId: string; stages: Map<string, string> } | null = null;
+
+/** id pipeline PRIMEXIA + mappa nome fase → id (cache 10 minuti). */
+export async function primexiaPipeline(token: string, locationId: string) {
+  if (pipeCache && Date.now() - pipeCache.at < 10 * 60_000) return pipeCache;
+  const p = (await listPipelines(token, locationId)).find(
+    (x) => x.name.trim().toLowerCase() === PIPELINE_NAME.toLowerCase(),
+  );
+  if (!p) return null;
+  const stages = new Map(p.stages.map((s) => [s.name.trim(), s.id]));
+  pipeCache = { at: Date.now(), pipelineId: p.id, stages };
+  return pipeCache;
+}
