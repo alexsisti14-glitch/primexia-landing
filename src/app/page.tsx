@@ -15,8 +15,8 @@ export default function Home() {
         <p className="brand mt-6 text-[clamp(2.6rem,9vw,5rem)] leading-none">
           PRIMEXIA<span className="text-[0.4em] tracking-normal align-super">™</span>
         </p>
-        <p className="kicker mt-3 !tracking-[0.5em] text-gold/80">Method</p>
-        <Flower size={44} className="mx-auto mt-8 text-gold/80" />
+        <p className="kicker mt-3 !tracking-[0.5em] text-gold">Method</p>
+        <Flower size={44} className="mx-auto mt-8 text-gold" />
         <p className="mx-auto mt-8 max-w-[30ch] text-[1.2rem] text-body italic">
           Architettura di regolazione metabolica e trasformazione della forma corporea.
         </p>
@@ -27,7 +27,7 @@ export default function Home() {
               href={c.href}
               className={`block px-7 py-7 text-left transition-colors duration-200 hover:bg-card-2 ${i ? "border-t border-[var(--gold-border)]" : "bg-card"}`}
             >
-              <span className="kicker !text-[0.58rem]">{c.kicker}</span>
+              <span className="kicker !text-[0.68rem]">{c.kicker}</span>
               <span className="mt-2 block font-serif text-[1.6rem] tracking-[0.06em] text-gold-lt">{c.title}</span>
               <span className="mt-1 block text-body italic">{c.body}</span>
               <span className="btn-line !mt-1 !min-h-0 !px-0 !text-gold">Scopri →</span>

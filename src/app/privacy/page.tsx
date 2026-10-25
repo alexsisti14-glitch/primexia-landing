@@ -77,7 +77,7 @@ export default function Privacy() {
             <h2>Cookie</h2>
             <p>
               Il sito usa cookie tecnici necessari al funzionamento e, solo se accetti, il pixel di Meta (Meta Platforms
-              Ireland Ltd.) per misurare le visite e le conversioni delle campagne pubblicitarie. Il video di presentazione è ospitato su YouTube in modalità privacy avanzata e viene caricato solo quando premi play. Puoi cambiare la tua scelta
+              Ireland Ltd.) per misurare le visite e le conversioni delle campagne pubblicitarie. Puoi cambiare la tua scelta
               in qualsiasi momento cancellando i dati del sito dal browser: il banner comparirà di nuovo.
             </p>
           </section>

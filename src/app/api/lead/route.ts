@@ -56,6 +56,36 @@ function normalizePhone(raw: string) {
   return p;
 }
 
+function ghlCreds() {
+  return {
+    token: process.env.GHL_API_TOKEN || process.env.TOKEN_GHL,
+    locationId: process.env.GHL_LOCATION_ID || process.env.GHL_ID_LUOGO,
+  };
+}
+
+/** Health check: verifica che token e location GHL siano validi (non espone segreti). */
+export async function GET() {
+  const { token, locationId } = ghlCreds();
+  const webhook = Boolean(process.env.GHL_WEBHOOK_URL);
+  if (!token || !locationId) return NextResponse.json({ api: "missing", webhook });
+  try {
+    const r = await fetch(`${GHL_API}/locations/${locationId}`, {
+      headers: { Authorization: `Bearer ${token}`, Version: GHL_VERSION, Accept: "application/json" },
+      cache: "no-store",
+    });
+    let name: string | undefined;
+    if (r.ok) name = ((await r.json()) as { location?: { name?: string } }).location?.name;
+    // Contacts scope check (search with limit 1)
+    const c = await fetch(`${GHL_API}/contacts/?locationId=${locationId}&limit=1`, {
+      headers: { Authorization: `Bearer ${token}`, Version: GHL_VERSION, Accept: "application/json" },
+      cache: "no-store",
+    });
+    return NextResponse.json({ api: r.ok ? "ok" : `error_${r.status}`, location: name ?? null, contacts: c.status, webhook });
+  } catch {
+    return NextResponse.json({ api: "unreachable", webhook });
+  }
+}
+
 export async function POST(req: Request) {
   let body: Body;
   try {
@@ -122,8 +152,7 @@ export async function POST(req: Request) {
     .filter(Boolean)
     .join("\n");
 
-  const token = process.env.GHL_API_TOKEN;
-  const locationId = process.env.GHL_LOCATION_ID;
+  const { token, locationId } = ghlCreds();
   const webhook = process.env.GHL_WEBHOOK_URL;
 
   if (!(token && locationId) && !webhook) {

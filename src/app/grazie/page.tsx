@@ -54,10 +54,10 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
             {steps.map((s, i) => (
               <li
                 key={s.n}
-                className="fade-up border border-t-2 border-[var(--rule)] border-t-gold bg-card px-6 py-6"
+                className="fade-up border border-t-2 border-[var(--line)] border-t-gold bg-card px-6 py-6"
                 style={{ ["--i" as string]: i + 5 }}
               >
-                <p className="kicker !text-[0.58rem]">Passo {s.n}</p>
+                <p className="kicker !text-[0.68rem]">Passo {s.n}</p>
                 <h2 className="mt-2 text-[1.35rem] text-cream">{s.title}</h2>
                 <p className="mt-2 text-[1.02rem] text-body">{s.body}</p>
               </li>
@@ -75,8 +75,8 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
               <p className="brand mt-6 text-[clamp(2rem,6vw,3.2rem)] leading-none">
                 PRIMEXIA<span className="text-[0.4em] tracking-normal align-super">™</span>
               </p>
-              <p className="kicker mt-2 !tracking-[0.5em] text-gold/80">Discovery</p>
-              <p className="mx-auto mt-8 max-w-[34ch] font-serif text-[1.45rem] leading-snug text-cream/85 italic">
+              <p className="kicker mt-2 !tracking-[0.5em] text-gold">Discovery</p>
+              <p className="mx-auto mt-8 max-w-[34ch] font-serif text-[1.45rem] leading-snug text-cream italic">
                 Il primo incontro con la nutrizione molecolare di precisione.
               </p>
             </div>
@@ -88,14 +88,14 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
               <div>
                 <ul className="space-y-5">
                   <li className="border-l border-[var(--gold-border)] pl-5">
-                    <p className="kicker !text-[0.58rem]">Incluso</p>
+                    <p className="kicker !text-[0.68rem]">Incluso</p>
                     <p className="mt-1 text-[1.1rem] text-body">
                       <span className="text-cream">Il libro digitale PRIMEXIA METHOD™</span>, per conoscere filosofia, principi
                       e architettura del metodo.
                     </p>
                   </li>
                   <li className="border-l border-[var(--gold-border)] pl-5">
-                    <p className="kicker !text-[0.58rem]">Incluso</p>
+                    <p className="kicker !text-[0.68rem]">Incluso</p>
                     <p className="mt-1 text-[1.1rem] text-body">
                       <span className="text-cream">Un programma alimentare introduttivo di 7 giorni</span>, per sperimentare
                       l&apos;impostazione del metodo nella tua quotidianità.

@@ -3,7 +3,6 @@ import type { LandingContent } from "@/content/types";
 import Questionnaire from "./Questionnaire";
 import Reveal from "./Reveal";
 import SiteFooter from "./SiteFooter";
-import VideoElena from "./VideoElena";
 import { Flower, GuideCover } from "./Decor";
 
 const BOOKS = [
@@ -22,7 +21,7 @@ function SectionHead({ label, title, className = "" }: { label: string; title: s
 }
 
 function Sep() {
-  return <div className="mx-auto h-px max-w-[680px] bg-[var(--gold-border)]" aria-hidden="true" />;
+  return <div className="rule-gold mx-auto !w-[min(680px,90%)]" aria-hidden="true" />;
 }
 
 export default function Landing({ content: c }: { content: LandingContent }) {
@@ -37,7 +36,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
           <Image src="/img/elena-bosi-volto.webp" alt="Elena Bosi" fill sizes="68px" className="object-cover" priority />
         </div>
         <p className="mt-3 font-serif text-[1.35rem] font-light tracking-[0.18em] text-cream uppercase sm:mt-4 sm:text-[1.6rem]">Elena Bosi</p>
-        <p className="kicker-muted mt-2 !text-gold/70">
+        <p className="kicker-muted mt-2 !text-gold">
           CPC – Psychosomatic Nutrition Counselor · Lifespan Nutrition Specialist
           <span className="hidden sm:inline"> · Founder PRIMEXIA™ Method</span>
         </p>
@@ -47,12 +46,12 @@ export default function Landing({ content: c }: { content: LandingContent }) {
         {/* ---------- HERO ---------- */}
         <section
           className="relative overflow-hidden border-t border-[var(--rule)] px-4 pt-10 pb-20 sm:px-6 lg:pt-20 lg:pb-24"
-          style={{ background: "radial-gradient(ellipse at 70% 0%, rgb(201 169 110 / 0.07), transparent 60%), var(--bg)" }}
+          style={{ background: "radial-gradient(ellipse at 75% 10%, rgb(212 176 106 / 0.10), transparent 55%), var(--bg)" }}
         >
           <div className="mx-auto grid max-w-[1040px] items-start gap-14 lg:grid-cols-[1.25fr_1fr] lg:gap-20">
             <div>
               <p className="fade-up font-serif text-xl tracking-[0.3em] text-gold uppercase" style={{ ["--i" as string]: 1 }}>
-                PRIMEXIA™ <span className="tracking-[0.12em] text-gold/60 normal-case italic">Method · {c.hero.tag}</span>
+                PRIMEXIA™ <span className="tracking-[0.12em] text-gold normal-case italic">Method · {c.hero.tag}</span>
               </p>
               <h1
                 className="fade-up mt-4 text-[clamp(2.1rem,5vw,3.4rem)] leading-[1.16]"
@@ -60,7 +59,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
               >
                 {c.hero.title}
               </h1>
-              <p className="fade-up mt-5 font-sans text-[0.66rem] tracking-[0.12em] text-muted" style={{ ["--i" as string]: 3 }}>
+              <p className="fade-up mt-5 font-sans text-[0.72rem] tracking-[0.12em] text-muted" style={{ ["--i" as string]: 3 }}>
                 {c.hero.meta}
               </p>
               <div className="fade-up my-8 h-px bg-[var(--rule)]" style={{ ["--i" as string]: 3 }} />
@@ -85,9 +84,8 @@ export default function Landing({ content: c }: { content: LandingContent }) {
               </div>
             </div>
 
-            <div className="fade-up flex flex-row items-start justify-center gap-5 sm:gap-10 lg:flex-col lg:items-center lg:gap-12" style={{ ["--i" as string]: 3 }}>
+            <div className="fade-up flex justify-center lg:pt-6" style={{ ["--i" as string]: 3 }}>
               <GuideCover variant={c.variant} />
-              <VideoElena />
             </div>
           </div>
         </section>
@@ -102,14 +100,14 @@ export default function Landing({ content: c }: { content: LandingContent }) {
             <div className="mt-12 space-y-9">
               {c.insight.items.map((it, i) => (
                 <div key={it.n} className="reveal border-l border-[var(--gold-border)] pl-6" style={{ ["--i" as string]: i }}>
-                  <p className="kicker !text-[0.58rem] opacity-80">{it.n}</p>
+                  <p className="kicker !text-[0.68rem] ">{it.n}</p>
                   <h3 className="mt-2 text-[clamp(1.2rem,2.6vw,1.5rem)] leading-snug text-cream">{it.title}</h3>
-                  <p className="mt-2 text-[1.05rem] text-body/85">{it.body}</p>
+                  <p className="mt-2 text-[1.05rem] text-body">{it.body}</p>
                 </div>
               ))}
             </div>
-            <blockquote className="reveal mt-12 border border-[var(--gold-border)] bg-gold/[0.04] px-7 py-7 text-center">
-              <p className="font-serif text-[clamp(1.15rem,2.4vw,1.4rem)] leading-relaxed text-cream/85 italic">
+            <blockquote className="reveal mt-12 border border-[var(--gold-border)] bg-[var(--gold-soft)] px-7 py-7 text-center">
+              <p className="font-serif text-[clamp(1.15rem,2.4vw,1.4rem)] leading-relaxed text-cream italic">
                 {c.insight.quote}
               </p>
             </blockquote>
@@ -126,12 +124,12 @@ export default function Landing({ content: c }: { content: LandingContent }) {
               {c.guide.items.map((g, i) => (
                 <li
                   key={g.title}
-                  className="reveal border border-t-2 border-[var(--rule)] border-t-gold bg-card px-6 py-6"
+                  className="reveal border border-t-2 border-[var(--line)] border-t-gold bg-card px-6 py-6"
                   style={{ ["--i" as string]: i }}
                 >
-                  <p className="kicker !text-[0.58rem]">Capitolo {String(i + 1).padStart(2, "0")}</p>
+                  <p className="kicker !text-[0.68rem]">Capitolo {String(i + 1).padStart(2, "0")}</p>
                   <h3 className="mt-2 text-[1.3rem] leading-snug text-cream">{g.title}</h3>
-                  <p className="mt-1.5 text-[1rem] text-body/80 italic">{g.body}</p>
+                  <p className="mt-1.5 text-[1rem] text-body italic">{g.body}</p>
                 </li>
               ))}
               <li className="reveal flex items-center justify-center border border-dashed border-[var(--gold-border)] px-6 py-8 text-center">
@@ -144,12 +142,12 @@ export default function Landing({ content: c }: { content: LandingContent }) {
         </section>
 
         {/* ---------- IL METODO ---------- */}
-        <section className="border-y border-[var(--rule)] bg-bg-deep px-4 py-20 sm:px-6 sm:py-28">
+        <section className="border-y border-[var(--rule)] bg-bg-raise px-4 py-20 sm:px-6 sm:py-28">
           <div className="mx-auto max-w-[680px]">
             <div className="reveal text-center">
               <p className="kicker">{c.method.label}</p>
               <Flower size={58} className="mx-auto mt-8 text-gold" />
-              <p className="mt-8 font-serif text-[clamp(1.6rem,4vw,2.3rem)] leading-snug text-cream/90 italic">
+              <p className="mt-8 font-serif text-[clamp(1.6rem,4vw,2.3rem)] leading-snug text-cream italic">
                 {c.method.statement[0]}
                 <br />
                 {c.method.statement[1]}
@@ -158,7 +156,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
             </div>
 
             <div className="reveal mt-12 border border-[var(--gold-border)] bg-card px-7 py-7">
-              <p className="kicker !text-[0.58rem]">{c.method.start.label}</p>
+              <p className="kicker !text-[0.68rem]">{c.method.start.label}</p>
               <h3 className="mt-2 text-[1.5rem] text-cream">{c.method.start.title}</h3>
               <p className="mt-2 text-[1.05rem] text-body">{c.method.start.body}</p>
             </div>
@@ -167,10 +165,10 @@ export default function Landing({ content: c }: { content: LandingContent }) {
               {c.method.phases.map((p, i) => (
                 <li
                   key={p.name}
-                  className="reveal flex items-start gap-5 border border-[var(--gold-border)] bg-gold/[0.03] px-6 py-6"
+                  className="reveal flex items-start gap-5 border border-[var(--gold-border)] bg-card px-6 py-6"
                   style={{ ["--i" as string]: i }}
                 >
-                  <span className="w-8 shrink-0 font-serif text-[2.2rem] leading-none text-gold/40">{i + 1}</span>
+                  <span className="w-8 shrink-0 font-serif text-[2.2rem] leading-none text-gold/70">{i + 1}</span>
                   <div>
                     <h3 className="font-sans text-[0.72rem] font-semibold tracking-[0.2em] text-gold uppercase">
                       {p.name} <span className="font-normal text-muted">· {p.label}</span>
@@ -181,8 +179,8 @@ export default function Landing({ content: c }: { content: LandingContent }) {
               ))}
             </ol>
 
-            <blockquote className="reveal mt-12 border border-[var(--gold-border)] bg-gold/[0.04] px-7 py-7">
-              <p className="font-serif text-[clamp(1.1rem,2.3vw,1.35rem)] leading-relaxed text-cream/85 italic">
+            <blockquote className="reveal mt-12 border border-[var(--gold-border)] bg-[var(--gold-soft)] px-7 py-7">
+              <p className="font-serif text-[clamp(1.1rem,2.3vw,1.35rem)] leading-relaxed text-cream italic">
                 {c.method.highlight}
               </p>
             </blockquote>
@@ -197,19 +195,19 @@ export default function Landing({ content: c }: { content: LandingContent }) {
               {c.stories.items.map((s, i) => (
                 <figure
                   key={s.name}
-                  className="reveal flex flex-col border border-t-2 border-[var(--rule)] border-t-gold bg-card px-6 py-6"
+                  className="reveal flex flex-col border border-t-2 border-[var(--line)] border-t-gold bg-card px-6 py-6"
                   style={{ ["--i" as string]: i }}
                 >
-                  <p className="kicker !text-[0.56rem]">{s.label}</p>
+                  <p className="kicker !text-[0.72rem]">{s.label}</p>
                   <figcaption className="mt-2">
                     <span className="block font-serif text-[1.3rem] text-cream">{s.name}</span>
-                    <span className="kicker-muted !text-[0.54rem]">{s.meta}</span>
+                    <span className="kicker-muted !text-[0.72rem]">{s.meta}</span>
                   </figcaption>
                   <blockquote className="mt-4 text-[1.02rem] leading-relaxed text-body italic">«{s.quote}»</blockquote>
                 </figure>
               ))}
             </div>
-            <p className="mt-6 text-center font-sans text-[0.6rem] tracking-[0.12em] text-muted">{c.stories.note}</p>
+            <p className="mt-6 text-center font-sans text-[0.68rem] tracking-[0.12em] text-muted">{c.stories.note}</p>
           </div>
         </section>
 
@@ -264,7 +262,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
               ))}
             </ul>
             <blockquote className="reveal mx-auto mt-12 max-w-[560px] text-center">
-              <p className="font-serif text-[1.3rem] leading-relaxed text-cream/85 italic">
+              <p className="font-serif text-[1.3rem] leading-relaxed text-cream italic">
                 «Questo libro non offre scorciatoie, né illusioni. Offre qualcosa di più raro: una riconnessione.»
               </p>
               <footer className="kicker-muted mt-3">Prof. Camillo Ricordi · Prefazione de Il Nutrimento Eterno</footer>
@@ -273,12 +271,12 @@ export default function Landing({ content: c }: { content: LandingContent }) {
         </section>
 
         {/* ---------- QUESTIONARIO ---------- */}
-        <section id="questionario" className="scroll-mt-4 border-y border-[var(--rule)] bg-bg-deep px-4 py-20 sm:px-6 sm:py-24">
+        <section id="questionario" className="scroll-mt-4 border-y border-[var(--rule)] bg-bg-raise px-4 py-20 sm:px-6 sm:py-24">
           <div className="mx-auto max-w-[620px]">
             <div className="reveal mb-10 text-center">
               <p className="kicker">{c.form.label}</p>
               <h2 className="mt-4 text-[clamp(1.75rem,3.6vw,2.4rem)] leading-tight">{c.form.title}</h2>
-              <p className="mt-2 text-body/80 italic">{c.form.subtitle}</p>
+              <p className="mt-2 text-body italic">{c.form.subtitle}</p>
             </div>
             <Questionnaire content={c} />
           </div>
@@ -312,7 +310,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
         {/* ---------- CHIUSURA ---------- */}
         <section className="px-4 py-20 text-center sm:px-6 sm:py-24">
           <div className="reveal mx-auto max-w-[600px]">
-            <Flower size={40} className="mx-auto text-gold/80" />
+            <Flower size={40} className="mx-auto text-gold" />
             <p className="mt-8 font-serif text-[clamp(1.5rem,3.4vw,2.1rem)] leading-snug text-gold-lt italic">
               {c.closing.statement}
             </p>
