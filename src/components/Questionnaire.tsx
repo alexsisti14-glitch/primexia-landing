@@ -156,18 +156,18 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
       onSubmit={handleSubmit(onSubmit)}
       noValidate
       onFocus={markStarted}
-      className="relative rounded-[28px] border border-border bg-card p-5 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.35)] sm:p-8"
+      className="relative border border-[var(--gold-border)] bg-bg p-5 sm:p-9"
     >
       {/* Progress */}
       <div className="mb-6">
-        <div className="mb-2 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.18em] text-fg-muted">
+        <div className="mb-3 flex items-center justify-between font-sans text-[0.6rem] tracking-[0.22em] text-muted uppercase">
           <span>
             Passo {step + 1} di {STEPS.length}
           </span>
-          <span className="text-accent-ink">{STEPS[step]}</span>
+          <span className="text-gold">{STEPS[step]}</span>
         </div>
         <div
-          className="h-1.5 overflow-hidden rounded-full bg-bg-alt"
+          className="h-px overflow-hidden bg-[var(--rule)]"
           role="progressbar"
           aria-valuemin={1}
           aria-valuemax={STEPS.length}
@@ -175,7 +175,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
           aria-label="Avanzamento questionario"
         >
           <div
-            className="h-full origin-left rounded-full bg-accent transition-transform duration-500 ease-out"
+            className="h-full origin-left bg-gold transition-transform duration-500 ease-out"
             style={{ transform: `scaleX(${progress / 100})` }}
           />
         </div>
@@ -187,11 +187,11 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
       {step === 0 && (
         <fieldset key="s0" className="step-in space-y-6">
           <legend className="sr-only">Su di te</legend>
-          <h3 ref={headingRef} tabIndex={-1} className="text-2xl font-semibold outline-none sm:text-3xl">
+          <h3 ref={headingRef} tabIndex={-1} className="text-[1.7rem] leading-snug text-cream outline-none sm:text-[2rem]">
             Partiamo da te
           </h3>
           <div>
-            <p className="mb-3 text-sm font-semibold">Sesso</p>
+            <p className="kicker-muted mb-3 !text-[0.6rem]">Sesso</p>
             <div className="grid grid-cols-2 gap-3">
               {(["uomo", "donna"] as const).map((v) => (
                 <label key={v} className="choice relative">
@@ -205,7 +205,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
             </div>
           </div>
           <div>
-            <p id="eta-label" className="mb-3 text-sm font-semibold">
+            <p id="eta-label" className="kicker-muted mb-3 !text-[0.6rem]">
               Età
             </p>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3" role="radiogroup" aria-labelledby="eta-label">
@@ -231,10 +231,10 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
       {step === 1 && (
         <fieldset key="s1" className="step-in space-y-4">
           <legend className="sr-only">Difficoltà</legend>
-          <h3 ref={headingRef} tabIndex={-1} className="text-2xl font-semibold outline-none sm:text-3xl">
+          <h3 ref={headingRef} tabIndex={-1} className="text-[1.7rem] leading-snug text-cream outline-none sm:text-[2rem]">
             Cosa ti pesa di più in questo momento?
           </h3>
-          <p className="text-sm text-fg-muted">Puoi sceglierne più di una.</p>
+          <p className="text-body/70 italic">Puoi sceglierne più di una.</p>
           <div className="grid gap-3 sm:grid-cols-2">
             {content.form.difficulties.map((o) => (
               <label key={o.value} className="choice relative">
@@ -246,7 +246,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
                     onChange: () => clearErrors("difficolta"),
                   })}
                 />
-                <span className="mark rounded-md">
+                <span className="mark">
                   <Check size={14} strokeWidth={3} aria-hidden />
                 </span>
                 {o.label}
@@ -260,10 +260,10 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
       {step === 2 && (
         <fieldset key="s2" className="step-in space-y-4">
           <legend className="sr-only">Obiettivi</legend>
-          <h3 ref={headingRef} tabIndex={-1} className="text-2xl font-semibold outline-none sm:text-3xl">
+          <h3 ref={headingRef} tabIndex={-1} className="text-[1.7rem] leading-snug text-cream outline-none sm:text-[2rem]">
             Dove vuoi arrivare?
           </h3>
-          <p className="text-sm text-fg-muted">Puoi sceglierne più di una.</p>
+          <p className="text-body/70 italic">Puoi sceglierne più di una.</p>
           <div className="grid gap-3 sm:grid-cols-2">
             {content.form.goals.map((o) => (
               <label key={o.value} className="choice relative">
@@ -275,7 +275,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
                     onChange: () => clearErrors("obiettivi"),
                   })}
                 />
-                <span className="mark rounded-md">
+                <span className="mark">
                   <Check size={14} strokeWidth={3} aria-hidden />
                 </span>
                 {o.label}
@@ -284,8 +284,8 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
           </div>
           {errors.obiettivi && <ErrorText>{errors.obiettivi.message}</ErrorText>}
           <div className="pt-2">
-            <label htmlFor="kg" className="mb-2 block text-sm font-semibold">
-              Quanti kg vorresti perdere? <span className="font-normal text-fg-muted">(facoltativo)</span>
+            <label htmlFor="kg" className="kicker-muted mb-2 block !text-[0.6rem]">
+              Quanti kg vorresti perdere? <span className="normal-case tracking-normal">(facoltativo)</span>
             </label>
             <select id="kg" className="field appearance-none" {...register("kg")}>
               <option value="">Preferisco non rispondere</option>
@@ -302,11 +302,11 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
       {step === 3 && (
         <fieldset key="s3" className="step-in space-y-5">
           <legend className="sr-only">Esperienze</legend>
-          <h3 ref={headingRef} tabIndex={-1} className="text-2xl font-semibold outline-none sm:text-3xl">
+          <h3 ref={headingRef} tabIndex={-1} className="text-[1.7rem] leading-snug text-cream outline-none sm:text-[2rem]">
             Hai già provato altro?
           </h3>
           <div>
-            <label htmlFor="provato" className="mb-2 block text-sm font-semibold">
+            <label htmlFor="provato" className="kicker-muted mb-2 block !text-[0.6rem]">
               Cosa hai provato finora
             </label>
             <select
@@ -326,7 +326,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
           </div>
           {hasTried && (
             <div className="step-in">
-              <p id="esito-label" className="mb-3 text-sm font-semibold">
+              <p id="esito-label" className="kicker-muted mb-3 !text-[0.6rem]">
                 Com&apos;è andata?
               </p>
               <div className="grid gap-3 sm:grid-cols-2" role="radiogroup" aria-labelledby="esito-label">
@@ -356,7 +356,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
       {step === 4 && (
         <fieldset key="s4" className="step-in space-y-4">
           <legend className="sr-only">Contatti</legend>
-          <h3 ref={headingRef} tabIndex={-1} className="text-2xl font-semibold outline-none sm:text-3xl">
+          <h3 ref={headingRef} tabIndex={-1} className="text-[1.7rem] leading-snug text-cream outline-none sm:text-[2rem]">
             Dove ti mandiamo la guida?
           </h3>
           <Field label="Nome" id="nome" error={errors.nome?.message}>
@@ -400,33 +400,33 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
             />
           </Field>
 
-          <div className="space-y-3 pt-2 text-sm leading-relaxed">
+          <div className="space-y-3 pt-3 text-[0.98rem] leading-relaxed text-body">
             <label className="flex cursor-pointer items-start gap-3">
               <input
                 type="checkbox"
-                className="mt-1 size-[18px] shrink-0 cursor-pointer accent-[var(--accent)]"
+                className="mt-1 size-[18px] shrink-0 cursor-pointer accent-[var(--gold)]"
                 aria-invalid={errors.privacy ? "true" : "false"}
                 {...register("privacy", { required: "Serve il consenso per inviarti la guida", onChange: () => clearErrors("privacy") })}
               />
               <span>
                 Ho letto l&apos;
-                <a href="/privacy" target="_blank" className="font-semibold underline underline-offset-2">
+                <a href="/privacy" target="_blank" className="text-gold-lt underline underline-offset-2">
                   informativa privacy
                 </a>{" "}
                 e acconsento al trattamento dei dati per ricevere la guida ed essere ricontattato/a.{" "}
-                <span className="text-fg-muted">(obbligatorio)</span>
+                <span className="text-muted">(obbligatorio)</span>
               </span>
             </label>
             {errors.privacy && <ErrorText>{errors.privacy.message}</ErrorText>}
             <label className="flex cursor-pointer items-start gap-3">
               <input
                 type="checkbox"
-                className="mt-1 size-[18px] shrink-0 cursor-pointer accent-[var(--accent)]"
+                className="mt-1 size-[18px] shrink-0 cursor-pointer accent-[var(--gold)]"
                 {...register("marketing")}
               />
               <span>
                 Acconsento a ricevere comunicazioni e contenuti da Studio in Lifespan Nutrition.{" "}
-                <span className="text-fg-muted">(facoltativo)</span>
+                <span className="text-muted">(facoltativo)</span>
               </span>
             </label>
           </div>
@@ -434,7 +434,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
       )}
 
       {serverError && (
-        <p role="alert" className="mt-5 rounded-xl bg-[color-mix(in_oklab,var(--danger)_8%,white)] p-4 text-sm text-danger">
+        <p role="alert" className="mt-5 border border-danger/40 p-4 text-[1rem] text-danger">
           {serverError}
         </p>
       )}
@@ -442,18 +442,18 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
       {/* Nav */}
       <div className="mt-8 flex items-center justify-between gap-3">
         {step > 0 ? (
-          <button type="button" onClick={back} className="btn-ghost">
+          <button type="button" onClick={back} className="btn-line">
             <ArrowLeft size={18} aria-hidden /> Indietro
           </button>
         ) : (
           <span />
         )}
         {step < STEPS.length - 1 ? (
-          <button type="button" onClick={next} className="btn-primary">
+          <button type="button" onClick={next} className="btn-gold !min-w-0 !flex-row !gap-2 !px-7">
             Avanti <ArrowRight size={18} aria-hidden />
           </button>
         ) : (
-          <button type="submit" className="btn-primary" disabled={sending}>
+          <button type="submit" className="btn-gold !min-w-0 !flex-row !gap-2 !px-7" disabled={sending}>
             {sending ? (
               <>
                 <span
@@ -469,7 +469,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
           </button>
         )}
       </div>
-      <p className="mt-5 flex items-center justify-center gap-2 text-center text-xs text-fg-muted">
+      <p className="mt-6 flex items-center justify-center gap-2 text-center font-sans text-[0.6rem] tracking-[0.12em] text-muted">
         <Lock size={13} aria-hidden /> Niente spam. Puoi cancellarti quando vuoi.
       </p>
     </form>
@@ -489,7 +489,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-2 block text-sm font-semibold">
+      <label htmlFor={id} className="kicker-muted mb-2 block !text-[0.6rem]">
         {label}
       </label>
       {children}
@@ -500,7 +500,7 @@ function Field({
 
 function ErrorText({ children }: { children: React.ReactNode }) {
   return (
-    <p role="alert" className="mt-2 text-sm font-medium text-danger">
+    <p role="alert" className="mt-2 font-sans text-[0.72rem] tracking-[0.04em] text-danger">
       {children}
     </p>
   );

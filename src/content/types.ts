@@ -3,9 +3,10 @@ export type Variant = "uomo" | "donna";
 export type Option = { value: string; label: string };
 
 export type Testimonial = {
-  quote: string;
+  label: string;
   name: string;
   meta: string;
+  quote: string;
 };
 
 export type LandingContent = {
@@ -14,59 +15,52 @@ export type LandingContent = {
   metaDescription: string;
   hero: {
     eyebrow: string;
+    tag: string; // "Uomo" | "Donna" (italic, under brand)
     title: string;
-    subtitle: string;
+    meta: string;
+    lead: string;
+    bullets: string[];
     cta: string;
-    ctaNote: string;
-    trust: string[];
+    ctaSub: string;
   };
-  pain: {
-    eyebrow: string;
-    title: string;
-    items: { title: string; body: string }[];
-    closing: string;
-  };
-  empathy?: {
-    eyebrow: string;
-    title: string;
-    body: string[];
-  };
-  method: {
-    eyebrow: string;
+  insight: {
+    label: string;
     title: string;
     intro: string;
-    start: { title: string; body: string };
+    items: { n: string; title: string; body: string }[];
+    quote: string;
+  };
+  guide: {
+    label: string;
+    title: string;
+    items: { title: string; body: string }[];
+  };
+  method: {
+    label: string;
+    statement: [string, string];
+    intro: string;
+    start: { label: string; title: string; body: string };
     phases: { name: string; label: string; body: string }[];
     highlight: string;
   };
-  guide: {
-    eyebrow: string;
-    title: string;
-    items: string[];
-    cta: string;
-  };
-  testimonials: {
-    eyebrow: string;
+  stories: {
+    label: string;
     title: string;
     items: Testimonial[];
     note: string;
   };
-  founder: {
-    eyebrow: string;
-    name: string;
-    role: string;
-    bio: string[];
-    book: string;
+  bio: {
+    paragraphs: string[];
   };
   form: {
-    eyebrow: string;
+    label: string;
     title: string;
     subtitle: string;
     difficulties: Option[];
     goals: Option[];
   };
   faq: { q: string; a: string }[];
-  finalCta: { title: string; cta: string };
+  closing: { statement: string; cta: string; ctaSub: string };
 };
 
 export const AGE_OPTIONS: Option[] = [
@@ -101,3 +95,5 @@ export const OUTCOME_OPTIONS: Option[] = [
   { value: "difficile", label: "Troppo difficile da seguire" },
   { value: "in_parte", label: "Ha funzionato in parte" },
 ];
+
+export const PHASES_NOTE = "RESET prepara, IGNITE accompagna, ANCHOR rafforza l'autonomia.";

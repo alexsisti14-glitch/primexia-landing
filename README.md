@@ -11,7 +11,7 @@ Landing di Elena Bosi / Studio in Lifespan Nutrition per le campagne Meta Ads.
 | `/api/lead` | Invio lead a GoHighLevel (API e/o webhook) |
 
 ## Stack
-Next.js 15 (App Router) · Tailwind CSS 4 · TypeScript · React Hook Form · Lucide. Deploy su Vercel (push su `main`).
+Next.js 15 (App Router) · Tailwind CSS 4 · TypeScript · React Hook Form · Lucide. Brand allineato all'ecosistema PRIMEXIA (nero caffè #1C1109, oro #C9A96E, Cormorant Garamond + Montserrat, fiore della vita). Deploy su Vercel (push su `main`).
 
 ## Variabili d'ambiente
 Vedi `.env.example`. Senza GHL configurato il form risponde con errore (nessun lead perso in silenzio).

@@ -2,140 +2,143 @@ import type { LandingContent } from "./types";
 
 export const donna: LandingContent = {
   variant: "donna",
-  metaTitle: "PRIMEXIA™ Method Donna · Guida gratuita",
+  metaTitle: "PRIMEXIA™ Method Donna · Guida gratuita · Elena Bosi",
   metaDescription:
-    "Ogni donna ha una propria architettura biologica. Scarica la guida gratuita PRIMEXIA METHOD™ Donna di Elena Bosi.",
+    "Ogni donna ha una propria architettura biologica. Scarica gratuitamente la guida PRIMEXIA METHOD™ Donna di Elena Bosi, Studio in Lifespan Nutrition, Verona.",
   hero: {
-    eyebrow: "PRIMEXIA™ Method · Donna",
-    title: "Hai fatto tutto giusto. E il tuo corpo non ha risposto.",
-    subtitle:
-      "Gonfiore, peso che non cede, fame che arriva la sera. Con gli anni e con gli ormoni il metabolismo femminile cambia, e le diete standard non ne tengono conto. Nella guida gratuita trovi cosa succede e come lo affronta PRIMEXIA METHOD™ Donna.",
-    cta: "Scarica la guida gratuita",
-    ctaNote: "2 minuti per il questionario · Guida in PDF via email",
-    trust: [
-      "Metodo registrato EUIPO",
-      "Nutrizione molecolare di precisione",
-      "Con supervisione medica per gli aspetti di competenza",
+    eyebrow: "Elena Bosi · Studio in Lifespan Nutrition · Verona",
+    tag: "Donna",
+    title: "Ogni donna ha una propria architettura biologica. La nutrizione deve rispettarla.",
+    meta: "Guida gratuita · Nutrizione molecolare di precisione · Verona e Canton Ticino",
+    lead: "Non è colpa tua. Il tuo corpo non ha smesso di funzionare. Ha cambiato linguaggio.",
+    bullets: [
+      "Senti che il tuo corpo non risponde più come prima",
+      "Sei stanca, gonfia, senza energie stabili",
+      "Hai già provato tutto, senza risultati duraturi",
+      "Vuoi capire il perché, non solo seguire un altro piano",
     ],
+    cta: "Scarica gratuitamente la guida",
+    ctaSub: "PRIMEXIA METHOD™ Donna · PDF",
   },
-  pain: {
-    eyebrow: "Il punto di partenza",
-    title: "Forse ti riconosci in qualcuna di queste.",
+  insight: {
+    label: "Il problema",
+    title: "Il corpo femminile parla una lingua diversa.",
+    intro:
+      "L'organismo femminile ha specificità fisiologiche, ormonali e metaboliche che cambiano nel corso della vita. Un piano uguale per tutte non ne tiene conto.",
     items: [
       {
-        title: "Ti svegli già gonfia.",
-        body: "E la sera i vestiti stringono più della mattina, anche quando hai mangiato poco.",
+        n: "01",
+        title: "Gli ormoni cambiano le regole",
+        body: "Il ciclo, la gravidanza, la perimenopausa e la menopausa influenzano fame, ritenzione ed energia.",
       },
       {
-        title: "Il peso non si sposta.",
-        body: "Hai ridotto, tagliato, rinunciato. La bilancia resta ferma, oppure scende e poi torna su.",
+        n: "02",
+        title: "Il grasso si distribuisce in modo diverso",
+        body: "I depositi femminili rispondono a segnali propri. Tagliare le calorie spesso non basta.",
       },
       {
-        title: "La fame arriva dopo cena.",
-        body: "Quella voglia di dolce che non passa e che poi ti fa sentire in colpa.",
-      },
-      {
-        title: "Il corpo sta cambiando.",
-        body: "Perimenopausa, menopausa, una gravidanza alle spalle: quello che funzionava prima adesso non funziona più.",
+        n: "03",
+        title: "Il cibo non è solo fisiologia",
+        body: "Il legame tra emozioni e alimentazione è reale. L'approccio psicosomatico fa parte del metodo.",
       },
     ],
-    closing: "Il corpo femminile parla una lingua diversa. Serve un metodo che la conosca.",
+    quote: "Molte donne non hanno bisogno di essere controllate. Hanno bisogno di ritrovare regolazione.",
   },
-  empathy: {
-    eyebrow: "La tua storia conta",
-    title: "Non è colpa tua.",
-    body: [
-      "Molte delle donne che arrivano allo studio hanno già provato di tutto: diete da manuale, app, digiuni, mesi di rinunce. Spesso si sono convinte che il problema fossero loro, o l'età.",
-      "Il punto è un altro. Un piano uguale per tutte ignora ormoni, ritmi, storia personale e rapporto con il cibo. PRIMEXIA parte da lì.",
+  guide: {
+    label: "Dentro la guida",
+    title: "Dodici pagine per capire il tuo metabolismo.",
+    items: [
+      { title: "Cosa cambia nel corpo femminile", body: "Ormoni, fasi della vita e metabolismo." },
+      { title: "I segnali da leggere", body: "Gonfiore, energia, sonno e fame serale, senza allarmismi." },
+      { title: "Oltre le calorie", body: "Perché contare non basta per capire come ti nutri." },
+      { title: "Nutrizione molecolare di precisione", body: "Cos'è e cosa cambia nell'approccio." },
+      { title: "RESET · IGNITE · ANCHOR", body: "Le tre fasi del Method Donna, una per una." },
     ],
   },
   method: {
-    eyebrow: "PRIMEXIA™ Method",
-    title: "Ogni donna ha una propria architettura biologica. La nutrizione deve rispettarla.",
+    label: "Il metodo",
+    statement: ["PRIMEXIA non forza il metabolismo.", "Lo riporta in assetto."],
     intro:
-      "È un metodo proprietario di nutrizione molecolare di precisione. Quantità, qualità, combinazioni e distribuzione degli alimenti vengono organizzate sul tuo profilo: fase della vita, equilibrio ormonale, abitudini, rapporto con il cibo. Niente grammature ossessive, niente pasti sostitutivi, niente sensi di colpa.",
+      "Quantità, qualità, combinazioni e distribuzione degli alimenti vengono organizzate in una strategia coerente con il tuo profilo e con la tua fase di vita. Niente grammature ossessive. Niente sensi di colpa.",
     start: {
+      label: "Il punto di partenza",
       title: "Check metabolico",
-      body: "Due donne della stessa età possono avere bisogni molto diversi. Si parte dalla tua composizione corporea, dalla tua storia e, quando indicato, dagli esami metabolici del sangue.",
+      body: "Due donne della stessa età possono avere bisogni molto diversi. Si parte da composizione corporea, abitudini, storia personale e, quando indicato, esami metabolici del sangue.",
     },
     phases: [
       {
         name: "RESET",
-        label: "Fase 1",
-        body: "Si riduce il sovraccarico e il corpo ritrova i suoi segnali, senza restrizioni drastiche né dimagrimento forzato.",
+        label: "Riorganizzare",
+        body: "Riduce il sovraccarico e aiuta il corpo a ritrovare i suoi segnali, senza restrizioni drastiche né dimagrimento forzato.",
       },
       {
         name: "IGNITE",
-        label: "Fase 2",
-        body: "La strategia si adatta a come rispondi tu, per sostenere la ricomposizione corporea e un'energia più stabile durante la giornata.",
+        label: "Sviluppare",
+        body: "La strategia si ricalibra sulla tua risposta per sostenere la ricomposizione corporea e un'energia più stabile.",
       },
       {
         name: "ANCHOR",
-        label: "Fase 3",
-        body: "L'equilibrio raggiunto entra nella tua vita di tutti i giorni: famiglia, lavoro, cene, vacanze.",
+        label: "Consolidare",
+        body: "Consolida l'equilibrio raggiunto e lo rende compatibile con famiglia, lavoro, cene e vacanze.",
       },
     ],
     highlight:
-      "Nel percorso completo ti segue direttamente Elena Bosi, che ha ideato il metodo: tre mesi online, cinque consulenze, con supervisione medica per gli aspetti di competenza.",
+      "Non un programma standard lasciato all'autogestione, ma un rapporto diretto con chi ha ideato il metodo. Tre mesi, una fase al mese, cinque consulenze con Elena Bosi e supervisione medica per gli aspetti di competenza. Lo Studio segue un numero limitato di persone alla volta.",
   },
-  guide: {
-    eyebrow: "Guida gratuita · PDF",
-    title: "Cosa trovi nella guida",
-    items: [
-      "Come cambia il metabolismo femminile con gli anni e con gli ormoni",
-      "I segnali quotidiani da leggere senza allarmismi: gonfiore, energia, sonno, fame serale",
-      "Perché contare le calorie non basta",
-      "Come funziona la nutrizione molecolare di precisione",
-      "Le tre fasi RESET, IGNITE e ANCHOR, passo per passo",
-    ],
-    cta: "Voglio la guida",
-  },
-  testimonials: {
-    eyebrow: "Chi l'ha fatto",
-    title: "Donne che hanno ritrovato il proprio corpo. Parole loro.",
+  stories: {
+    label: "Storie vere",
+    title: "Hai fatto tutto giusto. Anche loro.",
     items: [
       {
-        quote:
-          "Sono in menopausa da due anni e ho provato davvero di tutto. Il peso non si spostava, mi svegliavo gonfia ogni mattina. Dalla seconda settimana qualcosa ha cominciato a cambiare: il gonfiore quasi di colpo, dormivo meglio, non avevo più quel bisogno di dolce dopo cena.",
+        label: "Da 80 a 62 kg",
+        name: "Eri",
+        meta: "44 anni · Verona",
+        quote: "Il bello è riuscire a mantenerli.",
+      },
+      {
+        label: "Menopausa",
         name: "Francesca T.",
         meta: "52 anni · Verona",
+        quote:
+          "Ho provato davvero di tutto. Mi svegliavo gonfia ogni mattina. Dalla seconda settimana qualcosa ha cominciato a cambiare: dormivo meglio e non avevo più quel bisogno di dolce dopo cena.",
       },
       {
-        quote:
-          "Ho avuto la mia seconda figlia a 41 anni. Diciotto mesi dopo avevo ancora 7 kg in più e una fame che non passava mai. Dalla seconda settimana la fame nervosa è sparita quasi di colpo. A fine percorso rimettevo i jeans di prima.",
+        label: "11 kg in un anno",
+        name: "Maria Rosa",
+        meta: "57 anni · Verona",
+        quote: "Nessuno era mai riuscito a cambiare il mio rapporto con il cibo.",
+      },
+      {
+        label: "Dopo la gravidanza",
         name: "Alessia R.",
         meta: "43 anni · Verona",
+        quote: "Diciotto mesi dopo la mia seconda figlia avevo ancora 7 kg in più. A fine percorso rimettevo i jeans di prima.",
       },
       {
-        quote:
-          "Per la prima volta da mesi non mi sentivo gonfia. Il bisogno di dolce dopo cena è sparito, senza lottarci. Ho 46 anni e mi ero convinta che fosse colpa dell'età. Evidentemente no.",
-        name: "Chiara V.",
-        meta: "46 anni · Brescia",
-      },
-      {
-        quote:
-          "Ho smesso di pensare al cibo in modo ansioso, continuo, come facevo da anni. E stamattina mi sono guardata allo specchio senza quella sensazione di sconforto.",
+        label: "Rapporto con il cibo",
         name: "Martina B.",
         meta: "Locarno · Canton Ticino",
+        quote: "Ho smesso di pensare al cibo in modo ansioso. E mi sono guardata allo specchio senza sconforto.",
+      },
+      {
+        label: "Gonfiore",
+        name: "Chiara V.",
+        meta: "46 anni · Brescia",
+        quote: "Mi ero convinta che fosse colpa dell'età. Evidentemente no.",
       },
     ],
-    note: "Esperienze individuali. I risultati possono variare da persona a persona.",
+    note: "Esperienze individuali, non promesse di risultati. I risultati possono variare.",
   },
-  founder: {
-    eyebrow: "Fondatrice del metodo",
-    name: "Elena Bosi",
-    role: "Psychosomatic Nutrition Counselor · Lifespan Nutrition Specialist",
-    bio: [
-      "Studia e lavora da anni su nutrizione, metabolismo e longevità, con un approccio che tiene insieme biologia, abitudini e storia personale. Il lato psicosomatico, cioè il legame tra emozioni e cibo, fa parte del metodo.",
-      "Ha fondato lo Studio in Lifespan Nutrition a Verona, che segue clienti anche in Canton Ticino e all'estero. PRIMEXIA™ è il metodo che ha costruito in questi anni, oggi marchio registrato.",
-      "Il suo obiettivo: aiutarti a capire il tuo corpo, non importi regole uguali per tutte.",
+  bio: {
+    paragraphs: [
+      "Mi dedico allo studio della nutrizione, del metabolismo e dei processi che accompagnano il benessere e la longevità. Il mio approccio considera insieme la biologia dell'organismo, le abitudini e la storia di ogni persona.",
+      "Ho costruito il mio metodo osservando ogni giorno in studio quello che i modelli tradizionali non riuscivano a spiegare: donne che facevano tutto giusto e non vedevano risultati. Non per mancanza di disciplina, ma perché il loro sistema biologico aveva perso la capacità di rispondere.",
     ],
-    book: "Autrice de Il Nutrimento Eterno, con prefazione del Prof. Camillo Ricordi.",
   },
   form: {
-    eyebrow: "Ultimo passo",
-    title: "Rispondi a 5 domande e ricevi la guida",
-    subtitle: "Ci aiuta a capire da dove parti. Bastano due minuti.",
+    label: "Guida gratuita",
+    title: "Ricevi la guida nella tua email",
+    subtitle: "Cinque domande per capire da dove parti. Due minuti.",
     difficulties: [
       { value: "gonfiore", label: "Gonfiore e ritenzione" },
       { value: "peso_non_cede", label: "Peso che non cede" },
@@ -144,38 +147,34 @@ export const donna: LandingContent = {
       { value: "stanchezza", label: "Stanchezza e cali di energia" },
       { value: "sonno", label: "Sonno poco riposante" },
       { value: "ormoni", label: "Cambiamenti ormonali, perimenopausa o menopausa" },
-      { value: "rapporto_cibo", label: "Rapporto difficile con il cibo, sensi di colpa" },
+      { value: "rapporto_cibo", label: "Rapporto difficile con il cibo" },
     ],
     goals: [
       { value: "perdere_peso", label: "Perdere peso" },
       { value: "sgonfiare", label: "Sgonfiarmi e sentirmi più leggera" },
-      { value: "energia", label: "Avere più energia durante la giornata" },
-      { value: "rapporto_cibo", label: "Fare pace con il cibo" },
+      { value: "energia", label: "Energie più stabili durante la giornata" },
+      { value: "rapporto_cibo", label: "Ritrovare serenità con il cibo" },
       { value: "mantenere", label: "Mantenere i risultati nel tempo" },
       { value: "salute", label: "Prendermi cura della salute a lungo termine" },
     ],
   },
   faq: [
-    { q: "La guida è davvero gratuita?", a: "Sì. La ricevi via email subito dopo il questionario." },
+    { q: "La guida è gratuita?", a: "Sì. La ricevi via email subito dopo il questionario." },
     {
       q: "Devo pesare il cibo o contare le calorie?",
-      a: "No. Il metodo guarda a qualità, combinazioni e distribuzione dei nutrienti, non solo alle calorie.",
+      a: "No. Il metodo considera qualità, combinazioni e distribuzione dei nutrienti, non solo l'apporto energetico.",
     },
+    { q: "Va bene anche in menopausa?", a: "Sì. Il metodo tiene conto delle diverse fasi della vita femminile." },
+    { q: "Servono integratori o pasti sostitutivi?", a: "No. Il metodo si basa sull'alimentazione." },
     {
-      q: "Va bene anche in menopausa?",
-      a: "Sì. Il metodo tiene conto delle diverse fasi della vita femminile, compresa la menopausa.",
-    },
-    {
-      q: "Servono integratori o pasti sostitutivi?",
-      a: "No. Il percorso si basa solo sull'alimentazione.",
-    },
-    {
-      q: "Ho una patologia o prendo farmaci. Posso seguirlo?",
-      a: "Prima di iniziare qualsiasi percorso alimentare confrontati con il tuo medico curante.",
+      q: "Ho una patologia o prendo farmaci.",
+      a: "PRIMEXIA è un percorso di nutrizione e non sostituisce il parere del medico. Confrontati prima con il tuo medico curante.",
     },
   ],
-  finalCta: {
-    title: "Il tuo corpo non ha bisogno di essere controllato. Ha bisogno di essere ascoltato.",
-    cta: "Scarica la guida gratuita",
+  closing: {
+    statement:
+      "Se senti che il tuo corpo ti sta dicendo qualcosa che finora non hai avuto gli strumenti per ascoltare, questa guida è il punto di partenza.",
+    cta: "Scarica gratuitamente la guida",
+    ctaSub: "PRIMEXIA METHOD™ Donna · PDF",
   },
 };

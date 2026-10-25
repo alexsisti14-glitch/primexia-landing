@@ -1,21 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant, Raleway } from "next/font/google";
+import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 
-const cormorant = Cormorant({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
 });
 
-const raleway = Raleway({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-raleway",
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -32,12 +32,12 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0f2744",
+  themeColor: "#1c1109",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="it" className={`${cormorant.variable} ${raleway.variable}`}>
+    <html lang="it" className={`${cormorant.variable} ${montserrat.variable}`}>
       <body>
         {children}
         <CookieBanner />

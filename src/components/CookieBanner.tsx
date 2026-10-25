@@ -34,11 +34,11 @@ export default function CookieBanner() {
       role="dialog"
       aria-live="polite"
       aria-label="Preferenze cookie"
-      className="step-in fixed inset-x-3 bottom-3 z-40 mx-auto max-w-xl rounded-2xl border border-black/10 bg-white p-5 text-[0.9rem] text-neutral-800 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.45)] sm:inset-x-auto sm:right-5 sm:bottom-5"
+      className="step-in fixed inset-x-3 bottom-3 z-40 mx-auto max-w-lg border border-[var(--gold-border)] bg-bg-deep p-5 text-[1rem] text-body shadow-[0_20px_60px_-10px_rgb(0_0_0_/_0.8)] sm:inset-x-auto sm:right-5 sm:bottom-5"
     >
       <p>
         Usiamo cookie tecnici e, con il tuo consenso, il pixel di Meta per misurare le campagne pubblicitarie.{" "}
-        <Link href="/privacy#cookie" className="font-semibold underline underline-offset-2">
+        <Link href="/privacy#cookie" className="text-gold-lt underline underline-offset-2">
           Dettagli
         </Link>
       </p>
@@ -46,14 +46,14 @@ export default function CookieBanner() {
         <button
           type="button"
           onClick={() => choose(false)}
-          className="min-h-11 cursor-pointer rounded-full px-4 font-semibold text-neutral-600 transition-colors hover:bg-neutral-100 active:scale-[0.97]"
+          className="btn-line"
         >
           Solo necessari
         </button>
         <button
           type="button"
           onClick={() => choose(true)}
-          className="min-h-11 cursor-pointer rounded-full bg-neutral-900 px-5 font-semibold text-white transition-transform active:scale-[0.97]"
+          className="btn-gold !min-h-11 !min-w-0 !px-6"
         >
           Accetta
         </button>

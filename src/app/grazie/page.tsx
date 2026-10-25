@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { BookOpen, CalendarDays, Mail, MessageCircle } from "lucide-react";
+import Image from "next/image";
 import SiteFooter from "@/components/SiteFooter";
-import { MoleculeArt } from "@/components/Decor";
 import DiscoveryCta from "@/components/DiscoveryCta";
+import { Flower } from "@/components/Decor";
 
 export const metadata: Metadata = {
   title: "Grazie · La tua guida PRIMEXIA™ è in arrivo",
@@ -11,117 +11,114 @@ export const metadata: Metadata = {
 
 const DISCOVERY_URL = process.env.NEXT_PUBLIC_DISCOVERY_URL || "https://primexia-discovery.netlify.app/";
 
-export default async function Grazie({
-  searchParams,
-}: {
-  searchParams: Promise<{ s?: string; n?: string }>;
-}) {
+export default async function Grazie({ searchParams }: { searchParams: Promise<{ s?: string; n?: string }> }) {
   const sp = await searchParams;
   const variant = sp.s === "donna" ? "donna" : "uomo";
   const name = (sp.n ?? "").replace(/[^\p{L}\s'-]/gu, "").slice(0, 30).trim();
-  const lei = variant === "donna";
 
   const steps = [
+    { n: "01", title: "Controlla la tua email", body: "La guida arriva in pochi minuti. Se non la vedi, guarda anche in Promozioni o Spam." },
+    { n: "02", title: "Leggila con calma", body: "Dodici pagine per capire cosa sta cambiando nel tuo corpo e come lavora il metodo." },
     {
-      icon: Mail,
-      title: "Controlla la tua email",
-      body: "La guida arriva in pochi minuti. Se non la vedi, guarda anche in Promozioni o Spam.",
-    },
-    {
-      icon: BookOpen,
-      title: "Leggila con calma",
-      body: "Bastano 15 minuti per capire cosa sta succedendo nel tuo corpo e come lavora il metodo.",
-    },
-    {
-      icon: MessageCircle,
+      n: "03",
       title: "Ti scriviamo su WhatsApp",
-      body: `Nei prossimi giorni il team dello studio ti contatta per capire se il percorso è adatto a te. Nessun impegno.`,
+      body: "Nei prossimi giorni lo Studio ti contatta per capire insieme se il percorso è adatto a te. Senza impegno.",
     },
   ];
 
   return (
-    <div data-variant={variant} className="min-h-dvh bg-bg text-fg">
+    <div data-variant={variant} className="min-h-dvh bg-bg">
       <header
-        className="grain relative isolate overflow-hidden px-4 pt-8 pb-20 text-on-primary sm:px-6 sm:pb-24"
-        style={{ background: "linear-gradient(165deg, var(--primary), var(--primary-2) 60%, var(--primary))" }}
+        className="px-4 pt-16 pb-16 text-center sm:px-6 sm:pt-20"
+        style={{ background: "radial-gradient(ellipse at 50% 0%, rgb(201 169 110 / 0.08), transparent 60%), var(--bg)" }}
       >
-        <MoleculeArt className="pointer-events-none absolute -top-48 -right-48 -z-10 w-[720px] text-accent opacity-35" />
-        <p className="mx-auto max-w-5xl font-serif text-xl tracking-[0.22em]">
-          PRIMEXIA<span className="text-accent">™</span>
+        <p className="kicker fade-up">Studio in Lifespan Nutrition · Longevity Hub · Verona</p>
+        <p className="brand fade-up mt-8 text-[clamp(2.4rem,8vw,4.2rem)] leading-none" style={{ ["--i" as string]: 1 }}>
+          PRIMEXIA<span className="text-[0.4em] tracking-normal align-super">™</span>
         </p>
-        <div className="mx-auto mt-14 max-w-3xl text-center">
-          <p className="hero-in text-[0.72rem] font-bold uppercase tracking-[0.26em] text-accent">Richiesta ricevuta</p>
-          <h1 className="hero-in mt-5 text-[clamp(2.4rem,6vw,4rem)] leading-[1.04] font-medium" style={{ ["--i" as string]: 1 }}>
-            {name ? `Grazie ${name}, ` : "Grazie, "}la tua guida è in arrivo.
-          </h1>
-          <p className="hero-in mx-auto mt-6 max-w-[56ch] text-lg text-on-primary-soft" style={{ ["--i" as string]: 2 }}>
-            Ti abbiamo inviato via email la guida gratuita PRIMEXIA METHOD™ {lei ? "Donna" : "Uomo"}.
-          </p>
-        </div>
+        <Flower size={44} className="fade-up mx-auto mt-6 text-gold" />
+        <p className="kicker fade-up mt-10" style={{ ["--i" as string]: 2 }}>
+          Richiesta ricevuta
+        </p>
+        <h1 className="fade-up mx-auto mt-4 max-w-[20ch] text-[clamp(2rem,5vw,3rem)] leading-[1.2]" style={{ ["--i" as string]: 3 }}>
+          {name ? `Grazie ${name}.` : "Grazie."} La tua guida è in arrivo.
+        </h1>
+        <p className="fade-up mx-auto mt-5 max-w-[48ch] text-[1.2rem] text-body italic" style={{ ["--i" as string]: 4 }}>
+          Ti abbiamo inviato via email la guida gratuita PRIMEXIA METHOD™ {variant === "donna" ? "Donna" : "Uomo"}.
+        </p>
       </header>
 
       <main>
-        <section className="px-4 sm:px-6">
-          <ol className="mx-auto -mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
+        <section className="px-4 pb-20 sm:px-6">
+          <ol className="mx-auto grid max-w-[940px] gap-4 md:grid-cols-3">
             {steps.map((s, i) => (
               <li
-                key={s.title}
-                className="hero-in rounded-3xl border border-border bg-card p-6 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.35)]"
-                style={{ ["--i" as string]: i + 3 }}
+                key={s.n}
+                className="fade-up border border-t-2 border-[var(--rule)] border-t-gold bg-card px-6 py-6"
+                style={{ ["--i" as string]: i + 5 }}
               >
-                <div className="flex items-center gap-3">
-                  <span className="grid size-10 place-items-center rounded-full bg-accent text-on-accent">
-                    <s.icon size={18} aria-hidden />
-                  </span>
-                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-fg-muted">Passo {i + 1}</span>
-                </div>
-                <h2 className="mt-4 font-sans text-lg font-bold tracking-normal">{s.title}</h2>
-                <p className="mt-1.5 text-fg-muted">{s.body}</p>
+                <p className="kicker !text-[0.58rem]">Passo {s.n}</p>
+                <h2 className="mt-2 text-[1.35rem] text-cream">{s.title}</h2>
+                <p className="mt-2 text-[1.02rem] text-body">{s.body}</p>
               </li>
             ))}
           </ol>
         </section>
 
-        {/* Discovery upsell */}
-        <section className="px-4 py-20 sm:px-6 sm:py-28">
-          <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[32px] bg-primary text-on-primary md:grid-cols-[1.2fr_1fr]">
-            <div className="p-8 sm:p-12">
-              <p className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-accent">Se vuoi iniziare subito</p>
-              <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] leading-[1.06] font-medium">PRIMEXIA™ Discovery</h2>
-              <p className="mt-2 font-serif text-xl italic text-on-primary-soft">
+        <div className="mx-auto h-px max-w-[680px] bg-[var(--gold-border)]" />
+
+        {/* Upsell Discovery */}
+        <section className="px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[880px]">
+            <div className="text-center">
+              <p className="kicker">Se vuoi iniziare subito</p>
+              <p className="brand mt-6 text-[clamp(2rem,6vw,3.2rem)] leading-none">
+                PRIMEXIA<span className="text-[0.4em] tracking-normal align-super">™</span>
+              </p>
+              <p className="kicker mt-2 !tracking-[0.5em] text-gold/80">Discovery</p>
+              <p className="mx-auto mt-8 max-w-[34ch] font-serif text-[1.45rem] leading-snug text-cream/85 italic">
                 Il primo incontro con la nutrizione molecolare di precisione.
               </p>
-              <ul className="mt-8 space-y-4 text-on-primary-soft">
-                <li className="flex gap-3">
-                  <BookOpen size={20} className="mt-0.5 shrink-0 text-accent" aria-hidden />
-                  <span>
-                    <strong className="text-on-primary">Il libro digitale PRIMEXIA METHOD™</strong>, per conoscere
-                    filosofia, principi e architettura del metodo.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <CalendarDays size={20} className="mt-0.5 shrink-0 text-accent" aria-hidden />
-                  <span>
-                    <strong className="text-on-primary">Un programma alimentare introduttivo di 7 giorni</strong>, per
-                    provare l&apos;impostazione del metodo nella tua quotidianità.
-                  </span>
-                </li>
-              </ul>
             </div>
-            <div className="flex flex-col justify-center border-t border-white/10 bg-white/[0.04] p-8 sm:p-12 md:border-t-0 md:border-l">
-              <p className="text-sm uppercase tracking-[0.2em] text-on-primary-soft">Accesso immediato</p>
-              <p className="mt-2 font-serif text-7xl leading-none text-accent">47 €</p>
-              <p className="mt-2 text-sm text-on-primary-soft">Pagamento unico · ricevi il link via email</p>
-              <DiscoveryCta href={DISCOVERY_URL} variant={variant} />
-              <p className="mt-6 text-xs leading-relaxed text-on-primary-soft">
-                Discovery è un&apos;esperienza introduttiva: non comprende check metabolico, esami, piano nutrizionale
-                individuale, consulenze o supervisione diretta, che fanno parte del percorso completo PRIMEXIA METHOD™.
-              </p>
+
+            <div className="mt-12 grid items-center gap-10 border border-[var(--gold-border)] bg-card p-7 sm:p-10 md:grid-cols-[180px_1fr]">
+              <div className="relative mx-auto aspect-[2/3] w-[150px] shadow-[0_24px_50px_-20px_rgb(0_0_0_/_0.9)] md:w-full">
+                <Image src="/img/libro-primexia-method.webp" alt="Libro digitale PRIMEXIA METHOD" fill sizes="180px" className="object-cover" />
+              </div>
+              <div>
+                <ul className="space-y-5">
+                  <li className="border-l border-[var(--gold-border)] pl-5">
+                    <p className="kicker !text-[0.58rem]">Incluso</p>
+                    <p className="mt-1 text-[1.1rem] text-body">
+                      <span className="text-cream">Il libro digitale PRIMEXIA METHOD™</span>, per conoscere filosofia, principi
+                      e architettura del metodo.
+                    </p>
+                  </li>
+                  <li className="border-l border-[var(--gold-border)] pl-5">
+                    <p className="kicker !text-[0.58rem]">Incluso</p>
+                    <p className="mt-1 text-[1.1rem] text-body">
+                      <span className="text-cream">Un programma alimentare introduttivo di 7 giorni</span>, per sperimentare
+                      l&apos;impostazione del metodo nella tua quotidianità.
+                    </p>
+                  </li>
+                </ul>
+                <div className="mt-8 flex flex-col items-center gap-2 border-t border-[var(--rule)] pt-8 sm:items-start">
+                  <p className="kicker-muted">Investimento</p>
+                  <p className="font-serif text-6xl leading-none font-light text-gold">€ 47</p>
+                  <p className="text-[0.95rem] text-muted italic">Pagamento unico · ricevi il link via email</p>
+                  <DiscoveryCta href={DISCOVERY_URL} variant={variant} />
+                </div>
+              </div>
             </div>
+            <p className="mx-auto mt-6 max-w-[640px] text-center text-[0.92rem] leading-relaxed text-muted italic">
+              Discovery è un&apos;esperienza introduttiva: non comprende check metabolico, esami del sangue, piano
+              nutrizionale individuale, consulenze o supervisione diretta, che fanno parte del percorso completo PRIMEXIA
+              METHOD™.
+            </p>
+            <p className="mx-auto mt-10 max-w-[520px] text-center font-serif text-[1.25rem] text-gold-lt italic">
+              Il prossimo passo è informarti, capire e scegliere consapevolmente.
+            </p>
           </div>
-          <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-fg-muted">
-            Il prossimo passo è informarti, capire e scegliere con consapevolezza. Nessuna fretta.
-          </p>
         </section>
       </main>
 

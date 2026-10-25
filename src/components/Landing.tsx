@@ -1,314 +1,325 @@
-import { ArrowDown, BookOpen, Check, Quote, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 import type { LandingContent } from "@/content/types";
 import Questionnaire from "./Questionnaire";
 import Reveal from "./Reveal";
 import SiteFooter from "./SiteFooter";
-import { GuideMockup, MoleculeArt } from "./Decor";
+import VideoElena from "./VideoElena";
+import { Flower, GuideCover } from "./Decor";
+
+const BOOKS = [
+  { src: "/img/libro-nutrimento-eterno.webp", title: "Il Nutrimento Eterno", sub: "Con prefazione del Prof. Camillo Ricordi" },
+  { src: "/img/libro-primordialita-molecolare.webp", title: "La primordialità molecolare", sub: "Riscoprire la radice biologica del nutrimento" },
+  { src: "/img/libro-orientamento-metabolico.webp", title: "Orientamento Metabolico", sub: "Scritti di biologia quotidiana" },
+];
+
+function SectionHead({ label, title, className = "" }: { label: string; title: string; className?: string }) {
+  return (
+    <div className={`reveal text-center ${className}`}>
+      <p className="kicker">{label}</p>
+      <h2 className="mx-auto mt-4 max-w-[22ch] text-[clamp(1.75rem,3.6vw,2.5rem)] leading-[1.25]">{title}</h2>
+    </div>
+  );
+}
+
+function Sep() {
+  return <div className="mx-auto h-px max-w-[680px] bg-[var(--gold-border)]" aria-hidden="true" />;
+}
 
 export default function Landing({ content: c }: { content: LandingContent }) {
-  const [featured, ...others] = c.testimonials.items;
-
   return (
-    <div data-variant={c.variant} className="min-h-dvh bg-bg text-fg">
+    <div data-variant={c.variant} className="min-h-dvh bg-bg">
       <Reveal />
-      <a
-        href="#questionario"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-card focus:px-4 focus:py-2"
-      >
-        Vai al questionario
-      </a>
 
-      {/* ---------------- HERO ---------------- */}
-      <header
-        className="grain relative isolate overflow-hidden text-on-primary"
-        style={{ background: "linear-gradient(165deg, var(--primary) 0%, var(--primary-2) 58%, var(--primary) 100%)" }}
-      >
-        <MoleculeArt className="pointer-events-none absolute -top-40 -right-48 -z-10 w-[760px] text-accent opacity-40 sm:-right-24" />
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 pt-6 sm:px-6">
-          <p className="font-serif text-xl tracking-[0.22em]">
-            PRIMEXIA<span className="text-accent">™</span>
-          </p>
-          <p className="hidden text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-on-primary-soft sm:block">
-            Studio in Lifespan Nutrition · Verona
-          </p>
+      {/* ---------- Testata (come le pagine Reset 21) ---------- */}
+      <header className="bg-bg-deep px-4 pt-6 pb-6 text-center sm:px-6 sm:pt-7 sm:pb-8">
+        <p className="kicker hidden sm:block">Studio in Lifespan Nutrition · Longevity Hub · Verona</p>
+        <div className="relative mx-auto size-[56px] sm:mt-5 sm:size-[68px] overflow-hidden rounded-full border border-[var(--gold-border)]">
+          <Image src="/img/elena-bosi-volto.webp" alt="Elena Bosi" fill sizes="68px" className="object-cover" priority />
         </div>
-
-        <div className="mx-auto grid max-w-6xl items-center gap-14 px-4 pt-14 pb-20 sm:px-6 lg:grid-cols-[1.25fr_1fr] lg:pt-20 lg:pb-28">
-          <div>
-            <p className="hero-in text-[0.72rem] font-bold uppercase tracking-[0.26em] text-accent" style={{ ["--i" as string]: 0 }}>
-              {c.hero.eyebrow}
-            </p>
-            <h1
-              className="hero-in mt-5 text-[clamp(2.4rem,6vw,4.4rem)] leading-[1.04] font-medium"
-              style={{ ["--i" as string]: 1 }}
-            >
-              {c.hero.title}
-            </h1>
-            <p
-              className="hero-in mt-6 max-w-[58ch] text-[1.05rem] leading-relaxed text-on-primary-soft sm:text-lg"
-              style={{ ["--i" as string]: 2 }}
-            >
-              {c.hero.subtitle}
-            </p>
-            <div className="hero-in mt-9 flex flex-col items-start gap-3" style={{ ["--i" as string]: 3 }}>
-              <a href="#questionario" className="btn-primary">
-                {c.hero.cta} <ArrowDown size={18} aria-hidden />
-              </a>
-              <p className="text-xs tracking-wide text-on-primary-soft">{c.hero.ctaNote}</p>
-            </div>
-            <ul
-              className="hero-in mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/15 pt-6 text-[0.8rem] text-on-primary-soft"
-              style={{ ["--i" as string]: 4 }}
-            >
-              {c.hero.trust.map((t) => (
-                <li key={t} className="flex items-center gap-2">
-                  <ShieldCheck size={15} className="text-accent" aria-hidden />
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="hero-in" style={{ ["--i" as string]: 3 }}>
-            <GuideMockup variant={c.variant} />
-          </div>
-        </div>
+        <p className="mt-3 font-serif text-[1.35rem] font-light tracking-[0.18em] text-cream uppercase sm:mt-4 sm:text-[1.6rem]">Elena Bosi</p>
+        <p className="kicker-muted mt-2 !text-gold/70">
+          CPC – Psychosomatic Nutrition Counselor · Lifespan Nutrition Specialist
+          <span className="hidden sm:inline"> · Founder PRIMEXIA™ Method</span>
+        </p>
       </header>
 
       <main>
-        {/* ---------------- PAIN ---------------- */}
-        <section className="px-4 py-20 sm:px-6 sm:py-28">
-          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-            <div className="reveal lg:sticky lg:top-16 lg:self-start">
-              <p className="eyebrow">{c.pain.eyebrow}</p>
-              <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] leading-[1.08] font-medium">{c.pain.title}</h2>
-            </div>
+        {/* ---------- HERO ---------- */}
+        <section
+          className="relative overflow-hidden border-t border-[var(--rule)] px-4 pt-10 pb-20 sm:px-6 lg:pt-20 lg:pb-24"
+          style={{ background: "radial-gradient(ellipse at 70% 0%, rgb(201 169 110 / 0.07), transparent 60%), var(--bg)" }}
+        >
+          <div className="mx-auto grid max-w-[1040px] items-start gap-14 lg:grid-cols-[1.25fr_1fr] lg:gap-20">
             <div>
-              <ol className="divide-y divide-border border-y border-border">
-                {c.pain.items.map((p, i) => (
-                  <li key={p.title} className="reveal flex gap-5 py-6 sm:gap-8 sm:py-8" style={{ ["--i" as string]: i }}>
-                    <span className="font-serif text-3xl leading-none text-accent-ink tabular-nums sm:text-4xl">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <h3 className="font-sans text-lg font-bold tracking-normal">{p.title}</h3>
-                      <p className="mt-1.5 text-fg-muted">{p.body}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-              <p className="reveal mt-10 font-serif text-2xl leading-snug italic sm:text-[1.7rem]">{c.pain.closing}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* ---------------- EMPATHY (donna) ---------------- */}
-        {c.empathy && (
-          <section className="grain bg-bg-alt px-4 py-20 sm:px-6 sm:py-24">
-            <div className="reveal mx-auto max-w-3xl text-center">
-              <p className="eyebrow">{c.empathy.eyebrow}</p>
-              <h2 className="mt-4 text-[clamp(2.2rem,5vw,3.4rem)] leading-[1.05] font-medium">{c.empathy.title}</h2>
-              {c.empathy.body.map((b) => (
-                <p key={b} className="mx-auto mt-5 max-w-[62ch] text-lg leading-relaxed text-fg-muted">
-                  {b}
-                </p>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* ---------------- METHOD ---------------- */}
-        <section className="relative overflow-hidden bg-primary px-4 py-20 text-on-primary sm:px-6 sm:py-28">
-          <MoleculeArt className="pointer-events-none absolute -bottom-56 -left-56 w-[700px] text-accent opacity-25" />
-          <div className="relative mx-auto max-w-6xl">
-            <div className="reveal max-w-3xl">
-              <p className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-accent">{c.method.eyebrow}</p>
-              <h2 className="mt-4 text-[clamp(2rem,4.4vw,3.3rem)] leading-[1.06] font-medium">{c.method.title}</h2>
-              <p className="mt-6 max-w-[64ch] text-lg leading-relaxed text-on-primary-soft">{c.method.intro}</p>
-            </div>
-
-            <div className="mt-14 grid gap-6 lg:grid-cols-[0.8fr_2fr]">
-              <div className="reveal rounded-3xl border border-white/15 bg-white/[0.04] p-7">
-                <p className="text-[0.7rem] font-bold uppercase tracking-[0.22em] text-accent">Si parte da qui</p>
-                <h3 className="mt-3 text-2xl font-semibold">{c.method.start.title}</h3>
-                <p className="mt-3 text-on-primary-soft">{c.method.start.body}</p>
-              </div>
-              <ol className="relative grid gap-6 md:grid-cols-3">
-                <div
-                  className="absolute top-[30px] right-8 left-8 hidden h-px md:block"
-                  style={{ background: "linear-gradient(90deg, var(--phase-1), var(--phase-2), var(--phase-3))" }}
-                  aria-hidden="true"
-                />
-                {c.method.phases.map((p, i) => (
-                  <li key={p.name} className="reveal relative" style={{ ["--i" as string]: i + 1 }}>
-                    <span
-                      className="relative grid size-[60px] place-items-center rounded-full border-2 bg-primary font-serif text-xl font-semibold"
-                      style={{ borderColor: `var(--phase-${i + 1})`, color: `var(--phase-${i + 1})` }}
-                    >
-                      {i + 1}
-                    </span>
-                    <p className="mt-5 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-on-primary-soft">{p.label}</p>
-                    <h3 className="mt-1 font-serif text-3xl tracking-[0.12em]">{p.name}</h3>
-                    <p className="mt-3 text-on-primary-soft">{p.body}</p>
-                  </li>
-                ))}
-              </ol>
-            </div>
-
-            <p className="reveal mt-14 max-w-3xl border-l-2 border-accent pl-6 font-serif text-xl leading-relaxed italic text-on-primary sm:text-2xl">
-              {c.method.highlight}
-            </p>
-          </div>
-        </section>
-
-        {/* ---------------- GUIDE ---------------- */}
-        <section className="px-4 py-20 sm:px-6 sm:py-28">
-          <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
-            <div className="reveal order-2 lg:order-1">
-              <GuideMockup variant={c.variant} />
-            </div>
-            <div className="reveal order-1 lg:order-2">
-              <p className="eyebrow flex items-center gap-2">
-                <BookOpen size={15} aria-hidden /> {c.guide.eyebrow}
+              <p className="fade-up font-serif text-xl tracking-[0.3em] text-gold uppercase" style={{ ["--i" as string]: 1 }}>
+                PRIMEXIA™ <span className="tracking-[0.12em] text-gold/60 normal-case italic">Method · {c.hero.tag}</span>
               </p>
-              <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] leading-[1.08] font-medium">{c.guide.title}</h2>
-              <ul className="mt-8 space-y-4">
-                {c.guide.items.map((it) => (
-                  <li key={it} className="flex gap-4">
-                    <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-accent text-on-accent">
-                      <Check size={15} strokeWidth={3} aria-hidden />
+              <h1
+                className="fade-up mt-4 text-[clamp(2.1rem,5vw,3.4rem)] leading-[1.16]"
+                style={{ ["--i" as string]: 2 }}
+              >
+                {c.hero.title}
+              </h1>
+              <p className="fade-up mt-5 font-sans text-[0.66rem] tracking-[0.12em] text-muted" style={{ ["--i" as string]: 3 }}>
+                {c.hero.meta}
+              </p>
+              <div className="fade-up my-8 h-px bg-[var(--rule)]" style={{ ["--i" as string]: 3 }} />
+              <p className="fade-up text-[1.3rem] leading-relaxed text-body italic" style={{ ["--i" as string]: 4 }}>
+                {c.hero.lead}
+              </p>
+              <ul className="fade-up mt-7" style={{ ["--i" as string]: 5 }}>
+                {c.hero.bullets.map((b) => (
+                  <li key={b} className="flex gap-4 border-b border-[var(--rule)] py-2.5 text-[1.08rem] text-body">
+                    <span className="text-gold" aria-hidden>
+                      —
                     </span>
-                    <span className="text-[1.05rem]">{it}</span>
+                    {b}
                   </li>
                 ))}
               </ul>
-              <a href="#questionario" className="btn-primary mt-10">
-                {c.guide.cta} <ArrowDown size={18} aria-hidden />
-              </a>
+              <div className="fade-up mt-10 text-center lg:text-left" style={{ ["--i" as string]: 6 }}>
+                <a href="#questionario" className="btn-gold">
+                  {c.hero.cta}
+                  <small>{c.hero.ctaSub}</small>
+                </a>
+              </div>
+            </div>
+
+            <div className="fade-up flex flex-row items-start justify-center gap-5 sm:gap-10 lg:flex-col lg:items-center lg:gap-12" style={{ ["--i" as string]: 3 }}>
+              <GuideCover variant={c.variant} />
+              <VideoElena />
             </div>
           </div>
         </section>
 
-        {/* ---------------- TESTIMONIALS ---------------- */}
-        <section className="bg-bg-alt px-4 py-20 sm:px-6 sm:py-28">
-          <div className="mx-auto max-w-6xl">
-            <div className="reveal max-w-2xl">
-              <p className="eyebrow">{c.testimonials.eyebrow}</p>
-              <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] leading-[1.08] font-medium">{c.testimonials.title}</h2>
+        <Sep />
+
+        {/* ---------- IL PROBLEMA ---------- */}
+        <section className="px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[680px]">
+            <SectionHead label={c.insight.label} title={c.insight.title} />
+            <p className="reveal mt-6 text-center text-[1.15rem] text-body">{c.insight.intro}</p>
+            <div className="mt-12 space-y-9">
+              {c.insight.items.map((it, i) => (
+                <div key={it.n} className="reveal border-l border-[var(--gold-border)] pl-6" style={{ ["--i" as string]: i }}>
+                  <p className="kicker !text-[0.58rem] opacity-80">{it.n}</p>
+                  <h3 className="mt-2 text-[clamp(1.2rem,2.6vw,1.5rem)] leading-snug text-cream">{it.title}</h3>
+                  <p className="mt-2 text-[1.05rem] text-body/85">{it.body}</p>
+                </div>
+              ))}
             </div>
+            <blockquote className="reveal mt-12 border border-[var(--gold-border)] bg-gold/[0.04] px-7 py-7 text-center">
+              <p className="font-serif text-[clamp(1.15rem,2.4vw,1.4rem)] leading-relaxed text-cream/85 italic">
+                {c.insight.quote}
+              </p>
+            </blockquote>
+          </div>
+        </section>
 
-            <figure className="reveal mt-12 rounded-[28px] bg-primary p-8 text-on-primary sm:p-12">
-              <Quote size={36} className="text-accent" aria-hidden />
-              <blockquote className="mt-5 font-serif text-[clamp(1.4rem,2.6vw,2rem)] leading-snug">
-                &ldquo;{featured.quote}&rdquo;
-              </blockquote>
-              <figcaption className="mt-6 text-sm">
-                <span className="font-bold">{featured.name}</span>
-                <span className="text-on-primary-soft"> · {featured.meta}</span>
-              </figcaption>
-            </figure>
+        <Sep />
 
-            <div className="mt-6 columns-1 gap-6 md:columns-2">
-              {others.map((t, i) => (
-                <figure
-                  key={t.name}
-                  className="reveal mb-6 break-inside-avoid rounded-3xl border border-border bg-card p-7"
+        {/* ---------- DENTRO LA GUIDA ---------- */}
+        <section className="px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[940px]">
+            <SectionHead label={c.guide.label} title={c.guide.title} />
+            <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {c.guide.items.map((g, i) => (
+                <li
+                  key={g.title}
+                  className="reveal border border-t-2 border-[var(--rule)] border-t-gold bg-card px-6 py-6"
                   style={{ ["--i" as string]: i }}
                 >
-                  <blockquote className="text-[1.05rem] leading-relaxed">&ldquo;{t.quote}&rdquo;</blockquote>
-                  <figcaption className="mt-5 text-sm">
-                    <span className="font-bold">{t.name}</span>
-                    <span className="text-fg-muted"> · {t.meta}</span>
+                  <p className="kicker !text-[0.58rem]">Capitolo {String(i + 1).padStart(2, "0")}</p>
+                  <h3 className="mt-2 text-[1.3rem] leading-snug text-cream">{g.title}</h3>
+                  <p className="mt-1.5 text-[1rem] text-body/80 italic">{g.body}</p>
+                </li>
+              ))}
+              <li className="reveal flex items-center justify-center border border-dashed border-[var(--gold-border)] px-6 py-8 text-center">
+                <a href="#questionario" className="btn-line !text-gold">
+                  Ricevi la guida →
+                </a>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        {/* ---------- IL METODO ---------- */}
+        <section className="border-y border-[var(--rule)] bg-bg-deep px-4 py-20 sm:px-6 sm:py-28">
+          <div className="mx-auto max-w-[680px]">
+            <div className="reveal text-center">
+              <p className="kicker">{c.method.label}</p>
+              <Flower size={58} className="mx-auto mt-8 text-gold" />
+              <p className="mt-8 font-serif text-[clamp(1.6rem,4vw,2.3rem)] leading-snug text-cream/90 italic">
+                {c.method.statement[0]}
+                <br />
+                {c.method.statement[1]}
+              </p>
+              <p className="mx-auto mt-6 max-w-[60ch] text-[1.08rem] text-body">{c.method.intro}</p>
+            </div>
+
+            <div className="reveal mt-12 border border-[var(--gold-border)] bg-card px-7 py-7">
+              <p className="kicker !text-[0.58rem]">{c.method.start.label}</p>
+              <h3 className="mt-2 text-[1.5rem] text-cream">{c.method.start.title}</h3>
+              <p className="mt-2 text-[1.05rem] text-body">{c.method.start.body}</p>
+            </div>
+
+            <ol className="mt-5 space-y-5">
+              {c.method.phases.map((p, i) => (
+                <li
+                  key={p.name}
+                  className="reveal flex items-start gap-5 border border-[var(--gold-border)] bg-gold/[0.03] px-6 py-6"
+                  style={{ ["--i" as string]: i }}
+                >
+                  <span className="w-8 shrink-0 font-serif text-[2.2rem] leading-none text-gold/40">{i + 1}</span>
+                  <div>
+                    <h3 className="font-sans text-[0.72rem] font-semibold tracking-[0.2em] text-gold uppercase">
+                      {p.name} <span className="font-normal text-muted">· {p.label}</span>
+                    </h3>
+                    <p className="mt-2 text-[1.05rem] text-body">{p.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <blockquote className="reveal mt-12 border border-[var(--gold-border)] bg-gold/[0.04] px-7 py-7">
+              <p className="font-serif text-[clamp(1.1rem,2.3vw,1.35rem)] leading-relaxed text-cream/85 italic">
+                {c.method.highlight}
+              </p>
+            </blockquote>
+          </div>
+        </section>
+
+        {/* ---------- STORIE ---------- */}
+        <section className="px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[940px]">
+            <SectionHead label={c.stories.label} title={c.stories.title} />
+            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {c.stories.items.map((s, i) => (
+                <figure
+                  key={s.name}
+                  className="reveal flex flex-col border border-t-2 border-[var(--rule)] border-t-gold bg-card px-6 py-6"
+                  style={{ ["--i" as string]: i }}
+                >
+                  <p className="kicker !text-[0.56rem]">{s.label}</p>
+                  <figcaption className="mt-2">
+                    <span className="block font-serif text-[1.3rem] text-cream">{s.name}</span>
+                    <span className="kicker-muted !text-[0.54rem]">{s.meta}</span>
                   </figcaption>
+                  <blockquote className="mt-4 text-[1.02rem] leading-relaxed text-body italic">«{s.quote}»</blockquote>
                 </figure>
               ))}
             </div>
-            <p className="mt-2 text-xs text-fg-muted">{c.testimonials.note}</p>
+            <p className="mt-6 text-center font-sans text-[0.6rem] tracking-[0.12em] text-muted">{c.stories.note}</p>
           </div>
         </section>
 
-        {/* ---------------- FOUNDER ---------------- */}
-        <section className="px-4 py-20 sm:px-6 sm:py-28">
-          <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-[0.8fr_1.2fr] md:items-center">
-            <div className="reveal">
-              <div
-                className="grain relative mx-auto grid aspect-[4/5] w-full max-w-[320px] place-items-center overflow-hidden rounded-[28px] text-on-primary"
-                style={{ background: "linear-gradient(160deg, var(--primary-2), var(--primary))" }}
-              >
-                <MoleculeArt className="absolute inset-0 m-auto w-[130%] text-accent opacity-30" />
-                <div className="relative text-center">
-                  <p className="font-serif text-7xl tracking-[0.08em] text-accent">EB</p>
-                  <p className="mt-3 text-[0.68rem] font-bold uppercase tracking-[0.26em] text-on-primary-soft">
-                    Founder · PRIMEXIA™
-                  </p>
-                </div>
+        <Sep />
+
+        {/* ---------- ELENA BOSI ---------- */}
+        <section className="px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto grid max-w-[880px] gap-10 sm:grid-cols-[200px_1fr] sm:gap-12">
+            <div className="reveal mx-auto w-[200px]">
+              <div className="relative aspect-[578/1068] max-h-[340px] w-full overflow-hidden border border-[var(--gold-border)]">
+                <Image
+                  src="/img/elena-bosi.webp"
+                  alt="Elena Bosi, fondatrice di PRIMEXIA METHOD"
+                  fill
+                  sizes="200px"
+                  className="object-cover object-top"
+                />
               </div>
             </div>
             <div className="reveal">
-              <p className="eyebrow">{c.founder.eyebrow}</p>
-              <h2 className="mt-4 text-[clamp(2.2rem,4.4vw,3.2rem)] leading-none font-medium">{c.founder.name}</h2>
-              <p className="mt-3 text-sm font-semibold text-accent-ink">{c.founder.role}</p>
-              {c.founder.bio.map((b) => (
-                <p key={b} className="mt-5 text-[1.05rem] leading-relaxed text-fg-muted">
-                  {b}
+              <p className="kicker">Chi ha creato PRIMEXIA™</p>
+              <h2 className="mt-3 text-[2.1rem] text-cream">Elena Bosi</h2>
+              <p className="kicker-muted mt-2 leading-loose">
+                CPC — Psychosomatic Nutrition Counselor
+                <br />
+                Lifespan Nutrition Specialist
+                <br />
+                Studio in Lifespan Nutrition — Longevity Hub · Verona
+              </p>
+              {c.bio.paragraphs.map((p) => (
+                <p key={p} className="mt-5 text-[1.08rem] text-body">
+                  {p}
                 </p>
               ))}
-              <p className="mt-6 flex items-start gap-3 rounded-2xl bg-bg-alt p-5 text-[0.95rem]">
-                <BookOpen size={20} className="mt-0.5 shrink-0 text-accent-ink" aria-hidden />
-                <span>{c.founder.book}</span>
+              <p className="mt-5 text-[1.08rem] text-body">
+                Il metodo è un marchio registrato e viene seguito con supervisione medica per gli aspetti di competenza.
               </p>
             </div>
           </div>
+
+          <div className="mx-auto mt-16 max-w-[880px]">
+            <p className="kicker reveal text-center">Pubblicazioni</p>
+            <ul className="mt-8 grid grid-cols-3 gap-4 sm:gap-8">
+              {BOOKS.map((b, i) => (
+                <li key={b.title} className="reveal text-center" style={{ ["--i" as string]: i }}>
+                  <div className="relative mx-auto aspect-[2/3] w-full max-w-[150px] shadow-[0_20px_40px_-18px_rgb(0_0_0_/_0.8)]">
+                    <Image src={b.src} alt={`Copertina del libro ${b.title}`} fill sizes="150px" className="object-cover" />
+                  </div>
+                  <p className="mt-3 font-serif text-[0.98rem] leading-tight text-cream">{b.title}</p>
+                  <p className="mt-1 hidden text-[0.85rem] text-muted italic sm:block">{b.sub}</p>
+                </li>
+              ))}
+            </ul>
+            <blockquote className="reveal mx-auto mt-12 max-w-[560px] text-center">
+              <p className="font-serif text-[1.3rem] leading-relaxed text-cream/85 italic">
+                «Questo libro non offre scorciatoie, né illusioni. Offre qualcosa di più raro: una riconnessione.»
+              </p>
+              <footer className="kicker-muted mt-3">Prof. Camillo Ricordi · Prefazione de Il Nutrimento Eterno</footer>
+            </blockquote>
+          </div>
         </section>
 
-        {/* ---------------- FORM ---------------- */}
-        <section id="questionario" className="scroll-mt-4 bg-bg-alt px-4 py-20 sm:px-6 sm:py-28">
-          <div className="mx-auto max-w-2xl">
+        {/* ---------- QUESTIONARIO ---------- */}
+        <section id="questionario" className="scroll-mt-4 border-y border-[var(--rule)] bg-bg-deep px-4 py-20 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-[620px]">
             <div className="reveal mb-10 text-center">
-              <p className="eyebrow">{c.form.eyebrow}</p>
-              <h2 className="mt-4 text-[clamp(2rem,4.4vw,3rem)] leading-[1.06] font-medium">{c.form.title}</h2>
-              <p className="mt-3 text-fg-muted">{c.form.subtitle}</p>
+              <p className="kicker">{c.form.label}</p>
+              <h2 className="mt-4 text-[clamp(1.75rem,3.6vw,2.4rem)] leading-tight">{c.form.title}</h2>
+              <p className="mt-2 text-body/80 italic">{c.form.subtitle}</p>
             </div>
             <Questionnaire content={c} />
           </div>
         </section>
 
-        {/* ---------------- FAQ ---------------- */}
+        {/* ---------- FAQ ---------- */}
         <section className="px-4 py-20 sm:px-6 sm:py-24">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="reveal text-[clamp(2rem,4vw,2.8rem)] font-medium">Domande frequenti</h2>
-            <div className="mt-8 divide-y divide-border border-y border-border">
+          <div className="mx-auto max-w-[680px]">
+            <SectionHead label="Domande frequenti" title="Prima di iniziare" />
+            <div className="mt-10 border-t border-[var(--rule)]">
               {c.faq.map((f) => (
-                <details key={f.q} className="group py-5">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold [&::-webkit-details-marker]:hidden">
+                <details key={f.q} className="group border-b border-[var(--rule)] py-5">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-serif text-[1.25rem] text-cream [&::-webkit-details-marker]:hidden">
                     {f.q}
                     <span
-                      className="grid size-8 shrink-0 place-items-center rounded-full border border-border text-xl leading-none transition-transform duration-200 ease-out group-open:rotate-45"
+                      className="shrink-0 font-sans text-lg text-gold transition-transform duration-200 ease-out group-open:rotate-45"
                       aria-hidden
                     >
                       +
                     </span>
                   </summary>
-                  <p className="mt-3 max-w-[64ch] text-fg-muted">{f.a}</p>
+                  <p className="mt-3 text-[1.05rem] text-body">{f.a}</p>
                 </details>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ---------------- FINAL CTA ---------------- */}
-        <section
-          className="grain relative overflow-hidden px-4 py-20 text-center text-on-primary sm:px-6 sm:py-24"
-          style={{ background: "linear-gradient(165deg, var(--primary-2), var(--primary))" }}
-        >
-          <MoleculeArt className="pointer-events-none absolute -top-40 left-1/2 w-[640px] -translate-x-1/2 text-accent opacity-25" />
-          <div className="reveal relative mx-auto max-w-3xl">
-            <h2 className="text-[clamp(2rem,4.6vw,3.2rem)] leading-[1.08] font-medium">{c.finalCta.title}</h2>
-            <a href="#questionario" className="btn-primary mt-10">
-              {c.finalCta.cta}
-            </a>
-            <p className="mt-6 text-sm text-on-primary-soft">
-              Con supervisione medica per gli aspetti di competenza.
+        <Sep />
+
+        {/* ---------- CHIUSURA ---------- */}
+        <section className="px-4 py-20 text-center sm:px-6 sm:py-24">
+          <div className="reveal mx-auto max-w-[600px]">
+            <Flower size={40} className="mx-auto text-gold/80" />
+            <p className="mt-8 font-serif text-[clamp(1.5rem,3.4vw,2.1rem)] leading-snug text-gold-lt italic">
+              {c.closing.statement}
             </p>
+            <a href="#questionario" className="btn-gold mt-10">
+              {c.closing.cta}
+              <small>{c.closing.ctaSub}</small>
+            </a>
           </div>
         </section>
       </main>

@@ -1,63 +1,71 @@
 import type { Variant } from "@/content/types";
 
-/** Abstract molecular orbit art used behind the hero. Decorative only. */
-export function MoleculeArt({ className = "" }: { className?: string }) {
+/** Fiore della vita: il simbolo usato in tutte le pagine PRIMEXIA. */
+export function Flower({ className = "", size = 56 }: { className?: string; size?: number }) {
   return (
-    <svg viewBox="0 0 600 600" fill="none" aria-hidden="true" className={className}>
-      <g stroke="currentColor" strokeWidth="1">
-        <circle cx="300" cy="300" r="120" opacity="0.35" />
-        <circle cx="300" cy="300" r="190" opacity="0.22" />
-        <circle cx="300" cy="300" r="270" opacity="0.12" />
-        <ellipse cx="300" cy="300" rx="270" ry="96" opacity="0.18" transform="rotate(-28 300 300)" />
-        <ellipse cx="300" cy="300" rx="270" ry="96" opacity="0.14" transform="rotate(32 300 300)" />
-        <path d="M180 300 L300 180 L420 300 L300 420 Z" opacity="0.2" />
-      </g>
-      <g fill="currentColor">
-        <circle cx="300" cy="180" r="5" opacity="0.8" />
-        <circle cx="420" cy="300" r="4" opacity="0.6" />
-        <circle cx="300" cy="420" r="5" opacity="0.7" />
-        <circle cx="180" cy="300" r="4" opacity="0.6" />
-        <circle cx="490" cy="186" r="3" opacity="0.5" />
-        <circle cx="112" cy="412" r="3" opacity="0.5" />
-        <circle cx="300" cy="300" r="8" opacity="0.9" />
+    <svg
+      viewBox="0 0 100 100"
+      width={size}
+      height={size}
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      className={className}
+    >
+      <g fill="none" stroke="currentColor" strokeWidth="1.1">
+        <circle cx="50" cy="50" r="18" />
+        <circle cx="50" cy="32" r="18" />
+        <circle cx="50" cy="68" r="18" />
+        <circle cx="34.4" cy="41" r="18" />
+        <circle cx="65.6" cy="41" r="18" />
+        <circle cx="34.4" cy="59" r="18" />
+        <circle cx="65.6" cy="59" r="18" />
+        <circle cx="50" cy="50" r="36" strokeWidth="0.5" opacity="0.3" />
       </g>
     </svg>
   );
 }
 
-/** CSS-only mockup of the free PDF guide cover (mirrors the real guide). */
-export function GuideMockup({ variant }: { variant: Variant }) {
+/** Wordmark PRIMEXIA™ con sottotitolo letter-spaced. */
+export function Wordmark({ sub, className = "" }: { sub?: string; className?: string }) {
+  return (
+    <div className={`text-center ${className}`}>
+      <p className="brand text-[clamp(2.6rem,9vw,5.2rem)] leading-[1.1]" style={{ textShadow: "0 0 80px rgb(201 169 110 / 0.08)" }}>
+        PRIMEXIA<sup className="ml-1 align-super text-[0.35em] tracking-normal">™</sup>
+      </p>
+      {sub && <p className="kicker mt-2 !tracking-[0.5em] text-gold/80">{sub}</p>}
+    </div>
+  );
+}
+
+/** Copertina della guida gratuita, nello stile del PDF Stories. */
+export function GuideCover({ variant }: { variant: Variant }) {
   const label = variant === "uomo" ? "Uomo" : "Donna";
   const claim =
     variant === "uomo"
       ? "Il tuo corpo ha una propria architettura biologica."
       : "Ogni donna ha una propria architettura biologica.";
   return (
-    <div className="relative mx-auto w-[min(78vw,300px)] [perspective:1200px]">
+    <figure className="mx-auto w-[min(48vw,240px)] shrink-0">
       <div
-        className="absolute -inset-6 rounded-[40px] blur-2xl"
-        style={{ background: "radial-gradient(closest-side, var(--glow), transparent)" }}
-        aria-hidden="true"
-      />
-      <div
-        className="relative aspect-[3/4] overflow-hidden rounded-[6px_18px_18px_6px] border border-white/10 p-6 text-on-primary shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] [transform:rotateY(-14deg)_rotateX(4deg)] sm:p-7"
-        style={{ background: "linear-gradient(160deg, var(--primary-2), var(--primary) 70%)" }}
+        className="float-book relative aspect-[3/4.1] border border-[var(--gold-border)] px-3 py-5 text-center sm:px-5 sm:py-7 shadow-[0_40px_80px_-24px_rgb(0_0_0_/_0.8),0_0_80px_-20px_rgb(201_169_110_/_0.18)]"
+        style={{ background: "linear-gradient(160deg, #2a1b0e 0%, #1c1109 55%, #120b05 100%)" }}
         role="img"
         aria-label={`Copertina della guida gratuita PRIMEXIA METHOD ${label}`}
       >
-        <div className="absolute inset-y-0 left-0 w-3 rounded-l-[6px] bg-black/25" aria-hidden="true" />
-        <MoleculeArt className="absolute -right-16 -bottom-16 w-56 text-accent opacity-60" />
-        <p className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-accent">Guida gratuita</p>
-        <p className="mt-6 font-serif text-[1.9rem] leading-none tracking-[0.18em]">PRIMEXIA</p>
-        <p className="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.34em] text-accent">
-          Method™ · {label}
-        </p>
-        <div className="my-5 h-px w-10 bg-accent/70" />
-        <p className="font-serif text-lg italic leading-snug text-on-primary-soft">{claim}</p>
-        <p className="absolute bottom-6 left-6 text-[0.6rem] uppercase tracking-[0.2em] text-on-primary-soft sm:left-7">
-          Elena Bosi · Verona
+        <span className="absolute inset-y-0 left-0 w-[6px] bg-gradient-to-r from-[#3a2512] to-transparent" aria-hidden="true" />
+        <p className="font-sans text-[0.46rem] tracking-[0.3em] text-gold/80 uppercase">Studio in Lifespan Nutrition</p>
+        <Flower size={30} className="mx-auto mt-4 text-gold sm:mt-6" />
+        <p className="brand mt-3 text-[1.1rem] sm:mt-5 sm:text-[1.35rem]">PRIMEXIA<span className="text-[0.5em] tracking-normal">™</span></p>
+        <p className="mt-0.5 font-serif text-[0.85rem] tracking-[0.18em] text-gold-lt">Method · {label}</p>
+        <div className="rule-gold mx-auto my-3 sm:my-4" />
+        <p className="font-serif text-[0.74rem] leading-snug text-body italic sm:text-[0.82rem]">{claim}</p>
+        <p className="absolute inset-x-0 bottom-4 font-sans sm:bottom-6 text-[0.44rem] tracking-[0.22em] text-gold/70 uppercase">
+          Elena Bosi · Guida gratuita
         </p>
       </div>
-    </div>
+      <figcaption className="mx-auto mt-4 w-fit bg-gold/90 px-3 py-1.5 font-sans text-[0.5rem] tracking-[0.16em] whitespace-nowrap text-bg uppercase sm:px-4 sm:text-[0.56rem] sm:tracking-[0.22em]">
+        PDF gratuito · via email
+      </figcaption>
+    </figure>
   );
 }

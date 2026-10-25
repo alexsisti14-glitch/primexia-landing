@@ -9,23 +9,23 @@ export const metadata: Metadata = {
 
 export default function Privacy() {
   return (
-    <div data-variant="uomo" className="min-h-dvh bg-bg text-fg">
-      <header className="bg-primary px-4 py-10 text-on-primary sm:px-6">
+    <div className="min-h-dvh bg-bg">
+      <header className="border-b border-[var(--rule)] bg-bg-deep px-4 py-12 sm:px-6">
         <div className="mx-auto max-w-3xl">
-          <Link href="/" className="font-serif text-xl tracking-[0.22em]">
-            PRIMEXIA<span className="text-accent">™</span>
+          <Link href="/" className="brand text-xl">
+            PRIMEXIA<span className="text-[0.55em] tracking-normal">™</span>
           </Link>
-          <h1 className="mt-8 text-[clamp(2rem,5vw,3rem)] font-medium">Informativa privacy e cookie</h1>
-          <p className="mt-2 text-sm text-on-primary-soft">Ai sensi degli artt. 13 e 14 del Regolamento UE 2016/679 (GDPR)</p>
+          <h1 className="mt-8 text-[clamp(2rem,5vw,3rem)]">Informativa privacy e cookie</h1>
+          <p className="kicker-muted mt-3">Ai sensi degli artt. 13 e 14 del Regolamento UE 2016/679 (GDPR)</p>
         </div>
       </header>
       <main className="px-4 py-14 sm:px-6">
-        <article className="mx-auto max-w-3xl space-y-8 leading-relaxed [&_h2]:font-sans [&_h2]:text-xl [&_h2]:font-bold [&_h2]:tracking-normal [&_p]:mt-2 [&_p]:text-fg-muted [&_li]:text-fg-muted [&_ul]:mt-2 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5">
+        <article className="mx-auto max-w-3xl space-y-8 leading-relaxed [&_h2]:text-[1.5rem] [&_h2]:text-cream [&_p]:mt-2 [&_p]:text-body [&_li]:text-body [&_ul]:mt-2 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5">
           <section>
             <h2>Titolare del trattamento</h2>
             <p>
               Elena Bosi · Studio in Lifespan Nutrition – Longevity Hub, Via Madonna del Terraglio 13, 37129 Verona ·
-              P.IVA 04541260230 · Email:{" "}
+              P.IVA 04541260230 · PEC studionutribosi@pec.it · Email:{" "}
               <a className="underline" href="mailto:studionutrizionebosi@gmail.com">
                 studionutrizionebosi@gmail.com
               </a>
@@ -77,11 +77,11 @@ export default function Privacy() {
             <h2>Cookie</h2>
             <p>
               Il sito usa cookie tecnici necessari al funzionamento e, solo se accetti, il pixel di Meta (Meta Platforms
-              Ireland Ltd.) per misurare le visite e le conversioni delle campagne pubblicitarie. Puoi cambiare la tua scelta
+              Ireland Ltd.) per misurare le visite e le conversioni delle campagne pubblicitarie. Il video di presentazione è ospitato su YouTube in modalità privacy avanzata e viene caricato solo quando premi play. Puoi cambiare la tua scelta
               in qualsiasi momento cancellando i dati del sito dal browser: il banner comparirà di nuovo.
             </p>
           </section>
-          <p className="text-xs">Ultimo aggiornamento: ottobre 2026.</p>
+          <p className="kicker-muted">Ultimo aggiornamento: ottobre 2026.</p>
         </article>
       </main>
       <SiteFooter />
