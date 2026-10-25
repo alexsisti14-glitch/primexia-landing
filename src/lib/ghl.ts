@@ -80,6 +80,7 @@ export async function fieldIdMap(token: string, locationId: string) {
     const hit = fields.find((g) => g.name.trim().toLowerCase() === f.name.toLowerCase());
     if (hit) map.set(f.key, hit.id);
   }
-  cache = { at: Date.now(), map };
+  // cache solo se tutti i campi esistono (evita di memorizzare una mappa incompleta)
+  if (map.size === PRIMEXIA_FIELDS.length) cache = { at: Date.now(), map };
   return map;
 }
