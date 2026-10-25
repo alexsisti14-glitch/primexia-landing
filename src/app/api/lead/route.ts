@@ -1,19 +1,15 @@
 import { NextResponse } from "next/server";
+import { GHL_API, fieldIdMap, ghlCreds, ghlHeaders, type FieldKey } from "@/lib/ghl";
 
 /**
  * Lead endpoint → GoHighLevel (sub-account "PRIMEXIA METHOD").
  *
- * Two integrations, use one or both (env vars on Vercel):
- *  1. GHL_API_TOKEN + GHL_LOCATION_ID  → Private Integration token (LeadConnector API v2):
- *     upserts the contact with tags and adds a note with all questionnaire answers.
- *  2. GHL_WEBHOOK_URL → Inbound Webhook trigger of a GHL workflow: receives a flat JSON
- *     payload, useful to map fields to custom fields and to send the guide email.
+ * 1. API (TOKEN_GHL + GHL_ID_LUOGO): upsert del contatto con tag e campi personalizzati PRIMEXIA + nota.
+ * 2. Webhook (GHL_WEBHOOK_URL_UOMO / GHL_WEBHOOK_URL_DONNA): payload piatto che fa partire
+ *    il workflow giusto in base alla landing.
  */
 
 export const runtime = "nodejs";
-
-const GHL_API = "https://services.leadconnectorhq.com";
-const GHL_VERSION = "2021-07-28";
 
 type Body = {
   sesso?: string;
@@ -49,40 +45,31 @@ const cleanArr = (v: unknown) => (Array.isArray(v) ? v.map((x) => clean(x, 120))
 function normalizePhone(raw: string) {
   let p = raw.replace(/[^\d+]/g, "");
   if (p.startsWith("00")) p = `+${p.slice(2)}`;
-  if (!p.startsWith("+")) {
-    // Italian mobile/landline without prefix
-    p = p.startsWith("39") && p.length >= 11 ? `+${p}` : `+39${p}`;
-  }
+  if (!p.startsWith("+")) p = p.startsWith("39") && p.length >= 11 ? `+${p}` : `+39${p}`;
   return p;
 }
 
-function ghlCreds() {
-  return {
-    token: process.env.GHL_API_TOKEN || process.env.TOKEN_GHL,
-    locationId: process.env.GHL_LOCATION_ID || process.env.GHL_ID_LUOGO,
-  };
+function webhookFor(landing: "uomo" | "donna") {
+  return landing === "donna"
+    ? process.env.GHL_WEBHOOK_URL_DONNA || process.env.GHL_WEBHOOK_URL
+    : process.env.GHL_WEBHOOK_URL_UOMO || process.env.GHL_WEBHOOK_URL;
 }
 
-/** Health check: verifica che token e location GHL siano validi (non espone segreti). */
+/** Health check: verifica token, location e campi (non espone segreti). */
 export async function GET() {
   const { token, locationId } = ghlCreds();
-  const webhook = Boolean(process.env.GHL_WEBHOOK_URL);
-  if (!token || !locationId) return NextResponse.json({ api: "missing", webhook });
+  const webhooks = { uomo: Boolean(webhookFor("uomo")), donna: Boolean(webhookFor("donna")) };
+  if (!token || !locationId) return NextResponse.json({ api: "missing", webhooks });
   try {
-    const r = await fetch(`${GHL_API}/locations/${locationId}`, {
-      headers: { Authorization: `Bearer ${token}`, Version: GHL_VERSION, Accept: "application/json" },
-      cache: "no-store",
-    });
-    let name: string | undefined;
-    if (r.ok) name = ((await r.json()) as { location?: { name?: string } }).location?.name;
-    // Contacts scope check (search with limit 1)
-    const c = await fetch(`${GHL_API}/contacts/?locationId=${locationId}&limit=1`, {
-      headers: { Authorization: `Bearer ${token}`, Version: GHL_VERSION, Accept: "application/json" },
-      cache: "no-store",
-    });
-    return NextResponse.json({ api: r.ok ? "ok" : `error_${r.status}`, location: name ?? null, contacts: c.status, webhook });
+    const r = await fetch(`${GHL_API}/locations/${locationId}`, { headers: ghlHeaders(token), cache: "no-store" });
+    const name = r.ok ? ((await r.json()) as { location?: { name?: string } }).location?.name : undefined;
+    let fields = 0;
+    try {
+      fields = (await fieldIdMap(token, locationId)).size;
+    } catch {}
+    return NextResponse.json({ api: r.ok ? "ok" : `error_${r.status}`, location: name ?? null, campiPrimexia: fields, webhooks });
   } catch {
-    return NextResponse.json({ api: "unreachable", webhook });
+    return NextResponse.json({ api: "unreachable", webhooks });
   }
 }
 
@@ -94,69 +81,82 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "invalid_json" }, { status: 400 });
   }
 
-  // Honeypot: silently accept bots
-  if (clean(body.website)) return NextResponse.json({ ok: true });
+  if (clean(body.website)) return NextResponse.json({ ok: true }); // honeypot
 
   const nome = clean(body.nome, 80);
   const email = clean(body.email, 160).toLowerCase();
   const telefono = normalizePhone(clean(body.telefono, 30));
   const sesso = body.sesso === "donna" ? "donna" : "uomo";
+  const landing: "uomo" | "donna" = body.landing === "donna" ? "donna" : body.landing === "uomo" ? "uomo" : sesso;
 
   if (!nome || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || telefono.replace(/\D/g, "").length < 8 || !body.privacy) {
     return NextResponse.json({ ok: false, error: "validation" }, { status: 422 });
   }
 
   const labels = body.labels ?? {};
-  const answers = {
+  const utm = Object.fromEntries(Object.entries(body.utm ?? {}).map(([k, v]) => [k, clean(v, 200)]));
+  const a = {
     sesso: sesso === "donna" ? "Donna" : "Uomo",
     eta: clean(labels.eta),
     difficolta: cleanArr(labels.difficolta),
     obiettivi: cleanArr(labels.obiettivi),
-    kg_da_perdere: clean(labels.kg) || "Non indicato",
-    provato_altro: clean(labels.provato),
-    com_e_andata: clean(labels.esito),
+    kg: clean(labels.kg) || "Non indicato",
+    provato: clean(labels.provato),
+    esito: clean(labels.esito),
+    landing: landing === "donna" ? "Donna" : "Uomo",
+    marketing: body.marketing ? "Sì" : "No",
   };
-  const utm = Object.fromEntries(Object.entries(body.utm ?? {}).map(([k, v]) => [k, clean(v, 200)]));
-  const landing = clean(body.landing, 20) || sesso;
+
+  const riepilogo = [
+    `Questionario PRIMEXIA · Landing ${a.landing.toUpperCase()}`,
+    `Sesso: ${a.sesso}`,
+    `Età: ${a.eta}`,
+    `Difficoltà: ${a.difficolta.join(", ")}`,
+    `Obiettivi: ${a.obiettivi.join(", ")}`,
+    `Kg da perdere: ${a.kg}`,
+    `Ha provato altro: ${a.provato}`,
+    a.esito ? `Com'è andata: ${a.esito}` : "",
+    `Consenso privacy: Sì · Consenso marketing: ${a.marketing}`,
+    `UTM: ${
+      Object.entries(utm)
+        .filter(([, v]) => v)
+        .map(([k, v]) => `${k}=${v}`)
+        .join(" · ") || "nessuno"
+    }`,
+    `Pagina: ${clean(body.pageUrl, 400)}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   const tags = [
     "primexia-lead",
     `guida-${landing}`,
     `sesso-${sesso}`,
     body.eta ? `eta-${clean(body.eta, 20)}` : "",
-    ...cleanArr(body.difficolta).map((d) => `diff-${d}`),
-    ...cleanArr(body.obiettivi).map((o) => `obiettivo-${o}`),
-    body.kg ? `kg-${clean(body.kg, 20)}` : "",
-    body.provato ? `provato-${clean(body.provato, 30)}` : "",
-    body.esito ? `esito-${clean(body.esito, 30)}` : "",
     body.marketing ? "consenso-marketing" : "",
     utm.source ? `utm-${utm.source}` : "",
   ].filter(Boolean);
 
-  const noteBody = [
-    `Questionario PRIMEXIA · Landing ${landing.toUpperCase()}`,
-    `Sesso: ${answers.sesso}`,
-    `Età: ${answers.eta}`,
-    `Difficoltà: ${answers.difficolta.join(", ")}`,
-    `Obiettivi: ${answers.obiettivi.join(", ")}`,
-    `Kg da perdere: ${answers.kg_da_perdere}`,
-    `Ha provato altro: ${answers.provato_altro}`,
-    answers.com_e_andata ? `Com'è andata: ${answers.com_e_andata}` : "",
-    `Consenso privacy: sì · Consenso marketing: ${body.marketing ? "sì" : "no"}`,
-    `UTM: ${Object.entries(utm)
-      .filter(([, v]) => v)
-      .map(([k, v]) => `${k}=${v}`)
-      .join(" · ") || "nessuno"}`,
-    `Pagina: ${clean(body.pageUrl, 400)}`,
-  ]
-    .filter(Boolean)
-    .join("\n");
+  const values: Record<FieldKey, string | string[]> = {
+    sesso: a.sesso,
+    eta: a.eta,
+    difficolta: a.difficolta,
+    obiettivi: a.obiettivi,
+    kg: a.kg,
+    provato: a.provato,
+    esito: a.esito,
+    landing: a.landing,
+    marketing: a.marketing,
+    utm_source: utm.source ?? "",
+    utm_campaign: utm.campaign ?? "",
+    utm_content: utm.content ?? "",
+    riepilogo,
+  };
 
   const { token, locationId } = ghlCreds();
-  const webhook = process.env.GHL_WEBHOOK_URL;
-
+  const webhook = webhookFor(landing);
   if (!(token && locationId) && !webhook) {
-    console.error("[lead] GHL non configurato: impostare GHL_API_TOKEN + GHL_LOCATION_ID oppure GHL_WEBHOOK_URL");
+    console.error("[lead] GHL non configurato");
     return NextResponse.json({ ok: false, error: "crm_not_configured" }, { status: 503 });
   }
 
@@ -164,12 +164,16 @@ export async function POST(req: Request) {
 
   if (token && locationId) {
     try {
-      const headers = {
-        Authorization: `Bearer ${token}`,
-        Version: GHL_VERSION,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      };
+      const headers = ghlHeaders(token);
+      let customFields: { id: string; field_value: string | string[] }[] = [];
+      try {
+        const ids = await fieldIdMap(token, locationId);
+        customFields = (Object.keys(values) as FieldKey[])
+          .filter((k) => ids.has(k) && (Array.isArray(values[k]) ? values[k].length : values[k]))
+          .map((k) => ({ id: ids.get(k)!, field_value: values[k] }));
+      } catch (e) {
+        console.error("[lead] lettura campi GHL fallita", e);
+      }
       const up = await fetch(`${GHL_API}/contacts/upsert`, {
         method: "POST",
         headers,
@@ -178,18 +182,18 @@ export async function POST(req: Request) {
           firstName: nome,
           email,
           phone: telefono,
-          source: `Landing PRIMEXIA ${landing}`,
+          source: `Landing PRIMEXIA ${a.landing}`,
           tags,
+          customFields,
         }),
       });
       if (!up.ok) throw new Error(`upsert ${up.status}: ${(await up.text()).slice(0, 300)}`);
       const data = (await up.json()) as { contact?: { id?: string } };
-      const contactId = data.contact?.id;
-      if (contactId) {
-        const note = await fetch(`${GHL_API}/contacts/${contactId}/notes`, {
+      if (data.contact?.id) {
+        const note = await fetch(`${GHL_API}/contacts/${data.contact.id}/notes`, {
           method: "POST",
           headers,
-          body: JSON.stringify({ body: noteBody }),
+          body: JSON.stringify({ body: riepilogo }),
         });
         if (!note.ok) console.error("[lead] nota GHL fallita", note.status);
       }
@@ -209,14 +213,18 @@ export async function POST(req: Request) {
           first_name: nome,
           email,
           phone: telefono,
-          landing,
-          ...answers,
-          difficolta: answers.difficolta.join(", "),
-          obiettivi: answers.obiettivi.join(", "),
-          consenso_privacy: "si",
-          consenso_marketing: body.marketing ? "si" : "no",
+          landing: a.landing,
+          sesso: a.sesso,
+          eta: a.eta,
+          difficolta: a.difficolta.join(", "),
+          obiettivi: a.obiettivi.join(", "),
+          kg_da_perdere: a.kg,
+          ha_provato_altro: a.provato,
+          com_e_andata: a.esito,
+          consenso_privacy: "Sì",
+          consenso_marketing: a.marketing,
           tags: tags.join(","),
-          riepilogo: noteBody,
+          riepilogo,
           utm_source: utm.source ?? "",
           utm_medium: utm.medium ?? "",
           utm_campaign: utm.campaign ?? "",

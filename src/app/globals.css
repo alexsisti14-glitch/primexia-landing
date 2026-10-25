@@ -48,6 +48,7 @@ html {
 }
 
 body {
+  overflow-x: clip;
   background: var(--bg);
   color: var(--body);
   font-family: var(--font-serif);
@@ -84,7 +85,7 @@ p {
 /* ---------- Typographic primitives ---------- */
 .kicker {
   font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -92,7 +93,7 @@ p {
 }
 .kicker-muted {
   font-family: var(--font-sans);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -136,7 +137,7 @@ p {
     transform 140ms var(--ease-out-quart);
 }
 .btn-gold small {
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.18em;
   opacity: 0.8;
@@ -347,4 +348,21 @@ select.field {
 select.field option {
   background: var(--card);
   color: var(--cream);
+}
+
+/* ---------- Mobile ---------- */
+.safe-bottom {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+@media (max-width: 480px) {
+  .btn-gold {
+    letter-spacing: 0.12em;
+    padding-inline: 1.25rem;
+  }
+  .btn-gold small {
+    letter-spacing: 0.12em;
+  }
 }

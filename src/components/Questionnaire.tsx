@@ -160,7 +160,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
     >
       {/* Progress */}
       <div className="mb-6">
-        <div className="mb-3 flex items-center justify-between font-sans text-[0.68rem] tracking-[0.22em] text-muted uppercase">
+        <div className="mb-3 flex items-center justify-between font-sans text-[0.75rem] tracking-[0.22em] text-muted uppercase">
           <span>
             Passo {step + 1} di {STEPS.length}
           </span>
@@ -191,7 +191,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
             Partiamo da te
           </h3>
           <div>
-            <p className="kicker-muted mb-3 !text-[0.68rem]">Sesso</p>
+            <p className="kicker-muted mb-3 !text-[0.75rem]">Sesso</p>
             <div className="grid grid-cols-2 gap-3">
               {(["uomo", "donna"] as const).map((v) => (
                 <label key={v} className="choice relative">
@@ -205,7 +205,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
             </div>
           </div>
           <div>
-            <p id="eta-label" className="kicker-muted mb-3 !text-[0.68rem]">
+            <p id="eta-label" className="kicker-muted mb-3 !text-[0.75rem]">
               Età
             </p>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3" role="radiogroup" aria-labelledby="eta-label">
@@ -284,7 +284,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
           </div>
           {errors.obiettivi && <ErrorText>{errors.obiettivi.message}</ErrorText>}
           <div className="pt-2">
-            <label htmlFor="kg" className="kicker-muted mb-2 block !text-[0.68rem]">
+            <label htmlFor="kg" className="kicker-muted mb-2 block !text-[0.75rem]">
               Quanti kg vorresti perdere? <span className="normal-case tracking-normal">(facoltativo)</span>
             </label>
             <select id="kg" className="field appearance-none" {...register("kg")}>
@@ -306,7 +306,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
             Hai già provato altro?
           </h3>
           <div>
-            <label htmlFor="provato" className="kicker-muted mb-2 block !text-[0.68rem]">
+            <label htmlFor="provato" className="kicker-muted mb-2 block !text-[0.75rem]">
               Cosa hai provato finora
             </label>
             <select
@@ -326,7 +326,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
           </div>
           {hasTried && (
             <div className="step-in">
-              <p id="esito-label" className="kicker-muted mb-3 !text-[0.68rem]">
+              <p id="esito-label" className="kicker-muted mb-3 !text-[0.75rem]">
                 Com&apos;è andata?
               </p>
               <div className="grid gap-3 sm:grid-cols-2" role="radiogroup" aria-labelledby="esito-label">
@@ -469,7 +469,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
           </button>
         )}
       </div>
-      <p className="mt-6 flex items-center justify-center gap-2 text-center font-sans text-[0.68rem] tracking-[0.12em] text-muted">
+      <p className="mt-6 flex items-center justify-center gap-2 text-center font-sans text-[0.75rem] tracking-[0.12em] text-muted">
         <Lock size={13} aria-hidden /> Niente spam. Puoi cancellarti quando vuoi.
       </p>
     </form>
@@ -489,7 +489,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="kicker-muted mb-2 block !text-[0.68rem]">
+      <label htmlFor={id} className="kicker-muted mb-2 block !text-[0.75rem]">
         {label}
       </label>
       {children}
@@ -500,7 +500,7 @@ function Field({
 
 function ErrorText({ children }: { children: React.ReactNode }) {
   return (
-    <p role="alert" className="mt-2 font-sans text-[0.72rem] tracking-[0.04em] text-danger">
+    <p role="alert" className="mt-2 font-sans text-[0.75rem] tracking-[0.04em] text-danger">
       {children}
     </p>
   );

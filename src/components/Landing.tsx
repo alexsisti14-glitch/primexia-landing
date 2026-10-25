@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { LandingContent } from "@/content/types";
 import Questionnaire from "./Questionnaire";
+import StickyCta from "./StickyCta";
 import Reveal from "./Reveal";
 import SiteFooter from "./SiteFooter";
 import { Flower, GuideCover } from "./Decor";
@@ -36,7 +37,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
           <Image src="/img/elena-bosi-volto.webp" alt="Elena Bosi" fill sizes="68px" className="object-cover" priority />
         </div>
         <p className="mt-3 font-serif text-[1.35rem] font-light tracking-[0.18em] text-cream uppercase sm:mt-4 sm:text-[1.6rem]">Elena Bosi</p>
-        <p className="kicker-muted mt-2 !text-gold">
+        <p className="kicker-muted mt-1.5 !text-gold">
           CPC – Psychosomatic Nutrition Counselor · Lifespan Nutrition Specialist
           <span className="hidden sm:inline"> · Founder PRIMEXIA™ Method</span>
         </p>
@@ -45,28 +46,28 @@ export default function Landing({ content: c }: { content: LandingContent }) {
       <main>
         {/* ---------- HERO ---------- */}
         <section
-          className="relative overflow-hidden border-t border-[var(--rule)] px-4 pt-10 pb-20 sm:px-6 lg:pt-20 lg:pb-24"
+          className="relative overflow-hidden border-t border-[var(--rule)] px-4 pt-7 pb-16 sm:px-6 sm:pt-10 lg:pt-20 lg:pb-24"
           style={{ background: "radial-gradient(ellipse at 75% 10%, rgb(212 176 106 / 0.10), transparent 55%), var(--bg)" }}
         >
           <div className="mx-auto grid max-w-[1040px] items-start gap-14 lg:grid-cols-[1.25fr_1fr] lg:gap-20">
-            <div>
-              <p className="fade-up font-serif text-xl tracking-[0.3em] text-gold uppercase" style={{ ["--i" as string]: 1 }}>
+            <div className="flex flex-col">
+              <p className="fade-up font-serif text-lg tracking-[0.3em] sm:text-xl text-gold uppercase" style={{ ["--i" as string]: 1 }}>
                 PRIMEXIA™ <span className="tracking-[0.12em] text-gold normal-case italic">Method · {c.hero.tag}</span>
               </p>
               <h1
-                className="fade-up mt-4 text-[clamp(2.1rem,5vw,3.4rem)] leading-[1.16]"
+                className="fade-up mt-3 text-[clamp(1.95rem,5vw,3.4rem)] leading-[1.14] sm:mt-4"
                 style={{ ["--i" as string]: 2 }}
               >
                 {c.hero.title}
               </h1>
-              <p className="fade-up mt-5 font-sans text-[0.72rem] tracking-[0.12em] text-muted" style={{ ["--i" as string]: 3 }}>
+              <p className="fade-up mt-5 hidden font-sans text-[0.75rem] tracking-[0.12em] text-muted sm:block" style={{ ["--i" as string]: 3 }}>
                 {c.hero.meta}
               </p>
-              <div className="fade-up my-8 h-px bg-[var(--rule)]" style={{ ["--i" as string]: 3 }} />
-              <p className="fade-up text-[1.3rem] leading-relaxed text-body italic" style={{ ["--i" as string]: 4 }}>
+              <div className="fade-up my-5 h-px bg-[var(--rule)] sm:my-8" style={{ ["--i" as string]: 3 }} />
+              <p className="fade-up text-[1.2rem] leading-relaxed text-body italic sm:text-[1.3rem]" style={{ ["--i" as string]: 4 }}>
                 {c.hero.lead}
               </p>
-              <ul className="fade-up mt-7" style={{ ["--i" as string]: 5 }}>
+              <ul className="fade-up order-last mt-8 sm:order-none sm:mt-7" style={{ ["--i" as string]: 5 }}>
                 {c.hero.bullets.map((b) => (
                   <li key={b} className="flex gap-4 border-b border-[var(--rule)] py-2.5 text-[1.08rem] text-body">
                     <span className="text-gold" aria-hidden>
@@ -76,8 +77,8 @@ export default function Landing({ content: c }: { content: LandingContent }) {
                   </li>
                 ))}
               </ul>
-              <div className="fade-up mt-10 text-center lg:text-left" style={{ ["--i" as string]: 6 }}>
-                <a href="#questionario" className="btn-gold">
+              <div className="fade-up mt-6 text-center sm:mt-10 lg:text-left" style={{ ["--i" as string]: 6 }}>
+                <a href="#questionario" id="hero-cta" className="btn-gold w-full sm:w-auto">
                   {c.hero.cta}
                   <small>{c.hero.ctaSub}</small>
                 </a>
@@ -100,7 +101,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
             <div className="mt-12 space-y-9">
               {c.insight.items.map((it, i) => (
                 <div key={it.n} className="reveal border-l border-[var(--gold-border)] pl-6" style={{ ["--i" as string]: i }}>
-                  <p className="kicker !text-[0.68rem] ">{it.n}</p>
+                  <p className="kicker !text-[0.75rem] ">{it.n}</p>
                   <h3 className="mt-2 text-[clamp(1.2rem,2.6vw,1.5rem)] leading-snug text-cream">{it.title}</h3>
                   <p className="mt-2 text-[1.05rem] text-body">{it.body}</p>
                 </div>
@@ -127,7 +128,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
                   className="reveal border border-t-2 border-[var(--line)] border-t-gold bg-card px-6 py-6"
                   style={{ ["--i" as string]: i }}
                 >
-                  <p className="kicker !text-[0.68rem]">Capitolo {String(i + 1).padStart(2, "0")}</p>
+                  <p className="kicker !text-[0.75rem]">Capitolo {String(i + 1).padStart(2, "0")}</p>
                   <h3 className="mt-2 text-[1.3rem] leading-snug text-cream">{g.title}</h3>
                   <p className="mt-1.5 text-[1rem] text-body italic">{g.body}</p>
                 </li>
@@ -156,7 +157,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
             </div>
 
             <div className="reveal mt-12 border border-[var(--gold-border)] bg-card px-7 py-7">
-              <p className="kicker !text-[0.68rem]">{c.method.start.label}</p>
+              <p className="kicker !text-[0.75rem]">{c.method.start.label}</p>
               <h3 className="mt-2 text-[1.5rem] text-cream">{c.method.start.title}</h3>
               <p className="mt-2 text-[1.05rem] text-body">{c.method.start.body}</p>
             </div>
@@ -170,7 +171,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
                 >
                   <span className="w-8 shrink-0 font-serif text-[2.2rem] leading-none text-gold/70">{i + 1}</span>
                   <div>
-                    <h3 className="font-sans text-[0.72rem] font-semibold tracking-[0.2em] text-gold uppercase">
+                    <h3 className="font-sans text-[0.75rem] font-semibold tracking-[0.2em] text-gold uppercase">
                       {p.name} <span className="font-normal text-muted">· {p.label}</span>
                     </h3>
                     <p className="mt-2 text-[1.05rem] text-body">{p.body}</p>
@@ -198,16 +199,16 @@ export default function Landing({ content: c }: { content: LandingContent }) {
                   className="reveal flex flex-col border border-t-2 border-[var(--line)] border-t-gold bg-card px-6 py-6"
                   style={{ ["--i" as string]: i }}
                 >
-                  <p className="kicker !text-[0.72rem]">{s.label}</p>
+                  <p className="kicker !text-[0.75rem]">{s.label}</p>
                   <figcaption className="mt-2">
                     <span className="block font-serif text-[1.3rem] text-cream">{s.name}</span>
-                    <span className="kicker-muted !text-[0.72rem]">{s.meta}</span>
+                    <span className="kicker-muted !text-[0.75rem]">{s.meta}</span>
                   </figcaption>
                   <blockquote className="mt-4 text-[1.02rem] leading-relaxed text-body italic">«{s.quote}»</blockquote>
                 </figure>
               ))}
             </div>
-            <p className="mt-6 text-center font-sans text-[0.68rem] tracking-[0.12em] text-muted">{c.stories.note}</p>
+            <p className="mt-6 text-center font-sans text-[0.75rem] tracking-[0.12em] text-muted">{c.stories.note}</p>
           </div>
         </section>
 
@@ -288,8 +289,8 @@ export default function Landing({ content: c }: { content: LandingContent }) {
             <SectionHead label="Domande frequenti" title="Prima di iniziare" />
             <div className="mt-10 border-t border-[var(--rule)]">
               {c.faq.map((f) => (
-                <details key={f.q} className="group border-b border-[var(--rule)] py-5">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-serif text-[1.25rem] text-cream [&::-webkit-details-marker]:hidden">
+                <details key={f.q} className="group border-b border-[var(--rule)] py-3">
+                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-6 py-2 font-serif text-[1.25rem] text-cream [&::-webkit-details-marker]:hidden">
                     {f.q}
                     <span
                       className="shrink-0 font-sans text-lg text-gold transition-transform duration-200 ease-out group-open:rotate-45"
@@ -298,7 +299,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
                       +
                     </span>
                   </summary>
-                  <p className="mt-3 text-[1.05rem] text-body">{f.a}</p>
+                  <p className="mt-2 pb-2 text-[1.05rem] text-body">{f.a}</p>
                 </details>
               ))}
             </div>
@@ -323,6 +324,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
       </main>
 
       <SiteFooter />
+      <StickyCta label={c.hero.cta} />
     </div>
   );
 }

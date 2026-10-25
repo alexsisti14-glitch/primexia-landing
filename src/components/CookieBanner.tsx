@@ -34,7 +34,7 @@ export default function CookieBanner() {
       role="dialog"
       aria-live="polite"
       aria-label="Preferenze cookie"
-      className="step-in fixed inset-x-3 bottom-3 z-40 mx-auto max-w-lg border border-[var(--gold-border)] bg-bg-deep p-5 text-[1rem] text-body shadow-[0_20px_60px_-10px_rgb(0_0_0_/_0.8)] sm:inset-x-auto sm:right-5 sm:bottom-5"
+      className="step-in fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-50 mx-auto max-w-lg border border-[var(--gold-border)] bg-bg-deep p-5 text-[1rem] text-body shadow-[0_20px_60px_-10px_rgb(0_0_0_/_0.8)] sm:inset-x-auto sm:right-5 sm:bottom-5"
     >
       <p>
         Usiamo cookie tecnici e, con il tuo consenso, il pixel di Meta per misurare le campagne pubblicitarie.{" "}
