@@ -29,3 +29,6 @@ Il workflow GHL deve inviare la email con il PDF della guida e avviare il follow
 npm install
 npm run dev
 ```
+
+## Pipeline GHL
+Ogni lead crea (una sola volta per contatto) un'opportunità nella pipeline **PRIMEXIA METHOD**, fase `Nuovo lead · Uomo` o `Nuovo lead · Donna` in base alla landing. Fasi successive gestite in GHL.
