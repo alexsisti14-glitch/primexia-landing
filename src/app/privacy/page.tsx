@@ -3,8 +3,9 @@ import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Privacy e cookie · PRIMEXIA™",
-  robots: { index: false, follow: false },
+  title: "Privacy e cookie",
+  alternates: { canonical: "/privacy" },
+  robots: { index: true, follow: true },
 };
 
 export default function Privacy() {

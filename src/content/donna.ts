@@ -4,7 +4,7 @@ export const donna: LandingContent = {
   variant: "donna",
   metaTitle: "PRIMEXIA™ Method Donna · Guida gratuita · Elena Bosi",
   metaDescription:
-    "Ogni donna ha una propria architettura biologica. Scarica gratuitamente la guida PRIMEXIA METHOD™ Donna di Elena Bosi, Lifespan Nutrition – Longevity Hub, Verona.",
+    "Gonfiore, menopausa, peso che non cede: scarica la guida gratuita PRIMEXIA™ METHOD Donna di Elena Bosi. Nutrizione molecolare di precisione, Verona.",
   hero: {
     eyebrow: "Elena Bosi · Lifespan Nutrition – Longevity Hub · Verona",
     tag: "Donna",

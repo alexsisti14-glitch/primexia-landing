@@ -4,7 +4,7 @@ export const uomo: LandingContent = {
   variant: "uomo",
   metaTitle: "PRIMEXIA™ Method Uomo · Guida gratuita · Elena Bosi",
   metaDescription:
-    "Il tuo corpo ha una propria architettura biologica. Scarica gratuitamente la guida PRIMEXIA METHOD™ Uomo di Elena Bosi, Lifespan Nutrition – Longevity Hub, Verona.",
+    "Metabolismo dopo i 40, grasso addominale, energia che cala: scarica la guida gratuita PRIMEXIA™ METHOD Uomo di Elena Bosi. Nutrizione molecolare di precisione.",
   hero: {
     eyebrow: "Elena Bosi · Lifespan Nutrition – Longevity Hub · Verona",
     tag: "Uomo",
