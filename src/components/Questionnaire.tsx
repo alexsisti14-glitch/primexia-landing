@@ -188,24 +188,11 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
         <fieldset key="s0" className="step-in space-y-6">
           <legend className="sr-only">Su di te</legend>
           <h3 ref={headingRef} tabIndex={-1} className="text-[1.7rem] leading-snug text-cream outline-none sm:text-[2rem]">
-            Partiamo da te
+            Quanti anni hai?
           </h3>
+          <input type="hidden" {...register("sesso")} />
           <div>
-            <p className="kicker-muted mb-3 !text-[0.75rem]">Sesso</p>
-            <div className="grid grid-cols-2 gap-3">
-              {(["uomo", "donna"] as const).map((v) => (
-                <label key={v} className="choice relative">
-                  <input type="radio" value={v} {...register("sesso", { required: true })} />
-                  <span className="mark rounded-full">
-                    <Check size={14} strokeWidth={3} aria-hidden />
-                  </span>
-                  {v === "uomo" ? "Uomo" : "Donna"}
-                </label>
-              ))}
-            </div>
-          </div>
-          <div>
-            <p id="eta-label" className="kicker-muted mb-3 !text-[0.75rem]">
+            <p id="eta-label" className="sr-only">
               Età
             </p>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3" role="radiogroup" aria-labelledby="eta-label">
@@ -425,7 +412,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
                 {...register("marketing")}
               />
               <span>
-                Acconsento a ricevere comunicazioni e contenuti da Studio in Lifespan Nutrition.{" "}
+                Acconsento a ricevere comunicazioni e contenuti da Lifespan Nutrition – Longevity Hub.{" "}
                 <span className="text-muted">(facoltativo)</span>
               </span>
             </label>

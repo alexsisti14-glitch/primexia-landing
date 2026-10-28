@@ -4,12 +4,12 @@ export const uomo: LandingContent = {
   variant: "uomo",
   metaTitle: "PRIMEXIA™ Method Uomo · Guida gratuita · Elena Bosi",
   metaDescription:
-    "Il tuo corpo ha una propria architettura biologica. Scarica gratuitamente la guida PRIMEXIA METHOD™ Uomo di Elena Bosi, Studio in Lifespan Nutrition, Verona.",
+    "Il tuo corpo ha una propria architettura biologica. Scarica gratuitamente la guida PRIMEXIA METHOD™ Uomo di Elena Bosi, Lifespan Nutrition – Longevity Hub, Verona.",
   hero: {
-    eyebrow: "Elena Bosi · Studio in Lifespan Nutrition · Verona",
+    eyebrow: "Elena Bosi · Lifespan Nutrition – Longevity Hub · Verona",
     tag: "Uomo",
     title: "Il tuo corpo ha una propria architettura biologica. La nutrizione deve rispettarla.",
-    meta: "Guida gratuita · Nutrizione molecolare di precisione · Verona e Canton Ticino",
+    meta: "Guida gratuita · Oltre 10 anni di esperienza · Verona e Canton Ticino",
     lead: "Dopo i 40 anni ormoni, muscolo e metabolismo cambiano. Non è una trasformazione inevitabile: è il momento giusto per rivedere abitudini e priorità.",
     bullets: [
       "Il girovita cresce anche quando il peso resta fermo",
@@ -63,7 +63,7 @@ export const uomo: LandingContent = {
     start: {
       label: "Il punto di partenza",
       title: "Check metabolico",
-      body: "Due uomini della stessa età possono avere esigenze molto diverse. Si parte da composizione corporea, abitudini, attività fisica e, quando indicato, esami metabolici del sangue.",
+      body: "Due uomini della stessa età possono avere esigenze molto diverse. Si parte da composizione corporea, abitudini, attività fisica e, quando indicato, esami ematochimici.",
     },
     phases: [
       {
@@ -125,7 +125,7 @@ export const uomo: LandingContent = {
   },
   bio: {
     paragraphs: [
-      "Mi dedico allo studio della nutrizione, del metabolismo e dei processi che accompagnano il benessere e la longevità. Il mio approccio considera insieme la biologia dell'organismo, le abitudini e la storia di ogni persona.",
+      "Da oltre 10 anni mi dedico allo studio della nutrizione, del metabolismo e dei processi che accompagnano il benessere e la longevità. Il mio approccio considera insieme la biologia dell'organismo, le abitudini e la storia di ogni persona.",
       "Da questo lavoro è nato PRIMEXIA METHOD™, un metodo proprietario di nutrizione molecolare di precisione. Il mio obiettivo è aiutarti a comprendere meglio il tuo corpo, non importi regole uguali per tutti.",
     ],
   },

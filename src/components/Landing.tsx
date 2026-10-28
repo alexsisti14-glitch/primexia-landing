@@ -7,7 +7,7 @@ import SiteFooter from "./SiteFooter";
 import { Flower, GuideCover } from "./Decor";
 
 const BOOKS = [
-  { src: "/img/libro-nutrimento-eterno.webp", title: "Il Nutrimento Eterno", sub: "Con prefazione del Prof. Camillo Ricordi" },
+  { src: "/img/libro-nutrimento-eterno.webp", title: "Il Nutrimento Eterno", sub: "Dal fuoco primordiale alla longevità" },
   { src: "/img/libro-primordialita-molecolare.webp", title: "La primordialità molecolare", sub: "Riscoprire la radice biologica del nutrimento" },
   { src: "/img/libro-orientamento-metabolico.webp", title: "Orientamento Metabolico", sub: "Scritti di biologia quotidiana" },
 ];
@@ -30,9 +30,9 @@ export default function Landing({ content: c }: { content: LandingContent }) {
     <div data-variant={c.variant} className="min-h-dvh bg-bg">
       <Reveal />
 
-      {/* ---------- Testata (come le pagine Reset 21) ---------- */}
+      {/* ---------- Testata (stile pagine PRIMEXIA) ---------- */}
       <header className="bg-bg-deep px-4 pt-6 pb-6 text-center sm:px-6 sm:pt-7 sm:pb-8">
-        <p className="kicker hidden sm:block">Studio in Lifespan Nutrition · Longevity Hub · Verona</p>
+        <p className="kicker hidden sm:block">Lifespan Nutrition – Longevity Hub · Verona</p>
         <div className="relative mx-auto size-[56px] sm:mt-5 sm:size-[68px] overflow-hidden rounded-full border border-[var(--gold-border)]">
           <Image src="/img/elena-bosi-volto.webp" alt="Elena Bosi" fill sizes="68px" className="object-cover" priority />
         </div>
@@ -113,6 +113,29 @@ export default function Landing({ content: c }: { content: LandingContent }) {
               </p>
             </blockquote>
           </div>
+
+          {/* Visual 01 · Risposte biologiche individuali */}
+          <figure className="reveal relative mx-auto mt-16 max-w-[560px] overflow-hidden border border-[var(--gold-border)]">
+            <div className="relative aspect-[4/5]">
+              <Image
+                src="/img/risposte-biologiche.webp"
+                alt="Una donna e un uomo affiancati, con una trama dorata che evidenzia muscoli e metabolismo"
+                fill
+                sizes="(max-width: 640px) 100vw, 560px"
+                className="object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#080402] to-transparent" aria-hidden="true" />
+            </div>
+            <figcaption className="relative bg-[#080402] px-6 pt-2 pb-8 text-center sm:px-9 sm:pb-10">
+              <p className="kicker">Risposte biologiche individuali</p>
+              <p className="mt-3 font-serif text-[clamp(1.45rem,4.6vw,2rem)] leading-tight text-gold-lt">
+                Perché due persone che seguono la stessa alimentazione ottengono risultati diversi?
+              </p>
+              <p className="mt-3 text-[1.02rem] text-cream italic">
+                La risposta non si trova soltanto nelle calorie. Ogni organismo ha una propria biologia.
+              </p>
+            </figcaption>
+          </figure>
         </section>
 
         <Sep />
@@ -186,6 +209,34 @@ export default function Landing({ content: c }: { content: LandingContent }) {
               </p>
             </blockquote>
           </div>
+
+          {/* Visual 03 · Architettura nutrizionale personalizzata */}
+          <figure className="reveal relative mx-auto mt-16 max-w-[560px] overflow-hidden border border-[var(--gold-border)]">
+            <div className="relative aspect-square">
+              <Image
+                src="/img/architettura-nutrizionale.webp"
+                alt="Una donna e un uomo schiena contro schiena tra molecole dorate"
+                fill
+                sizes="(max-width: 640px) 100vw, 560px"
+                className="object-cover object-top"
+              />
+              <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#080402] to-transparent" aria-hidden="true" />
+            </div>
+            <figcaption className="relative bg-[#080402] px-6 pt-2 pb-8 text-center sm:px-9 sm:pb-10">
+              <p className="brand text-[1.5rem]">PRIMEXIA<span className="text-[0.5em] tracking-normal">™</span></p>
+              <p className="kicker mt-1 !tracking-[0.45em]">Method</p>
+              <p className="mx-auto mt-4 max-w-[34ch] text-[1.05rem] text-cream">
+                Un&apos;architettura nutrizionale personalizzata, progettata intorno alla biologia individuale.
+              </p>
+              <ul className="mx-auto mt-6 grid max-w-[420px] grid-cols-2 gap-x-5 gap-y-3">
+                {["Ricomposizione corporea", "Equilibrio metabolico", "Estetica e armonia", "Longevità e vitalità"].map((t) => (
+                  <li key={t} className="border-t border-[var(--gold-border)] pt-2 font-sans text-[0.72rem] leading-snug font-semibold tracking-[0.14em] text-gold uppercase">
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </figcaption>
+          </figure>
         </section>
 
         {/* ---------- STORIE ---------- */}
@@ -236,7 +287,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
                 <br />
                 Lifespan Nutrition Specialist
                 <br />
-                Studio in Lifespan Nutrition — Longevity Hub · Verona
+                Lifespan Nutrition – Longevity Hub · Verona
               </p>
               {c.bio.paragraphs.map((p) => (
                 <p key={p} className="mt-5 text-[1.08rem] text-body">
@@ -251,23 +302,33 @@ export default function Landing({ content: c }: { content: LandingContent }) {
 
           <div className="mx-auto mt-16 max-w-[880px]">
             <p className="kicker reveal text-center">Pubblicazioni</p>
-            <ul className="mt-8 grid grid-cols-3 gap-4 sm:gap-8">
-              {BOOKS.map((b, i) => (
+            {/* Il Nutrimento Eterno in evidenza, con il commento del Prof. Ricordi */}
+            <figure className="reveal mx-auto mt-8 grid max-w-[640px] items-center gap-8 sm:grid-cols-[200px_1fr]">
+              <div className="relative mx-auto aspect-[2/3] w-[170px] shadow-[0_28px_60px_-20px_rgb(0_0_0_/_0.9)] sm:w-[200px]">
+                <Image src={BOOKS[0].src} alt={`Copertina del libro ${BOOKS[0].title}`} fill sizes="200px" className="object-cover" />
+              </div>
+              <div className="text-center sm:text-left">
+                <p className="font-serif text-[1.7rem] leading-tight text-gold-lt">{BOOKS[0].title}</p>
+                <p className="mt-1 text-[1rem] text-muted italic">Dal fuoco primordiale alla longevità</p>
+                <blockquote className="mt-6 border-l-0 sm:border-l sm:border-[var(--gold-border)] sm:pl-5">
+                  <p className="font-serif text-[1.25rem] leading-relaxed text-cream italic">
+                    «Questo libro non offre scorciatoie, né illusioni. Offre qualcosa di più raro: una riconnessione.»
+                  </p>
+                  <footer className="kicker-muted mt-3">Prof. Camillo Ricordi · Prefazione</footer>
+                </blockquote>
+              </div>
+            </figure>
+            <ul className="mx-auto mt-12 grid max-w-[360px] grid-cols-2 gap-6">
+              {BOOKS.slice(1).map((b, i) => (
                 <li key={b.title} className="reveal text-center" style={{ ["--i" as string]: i }}>
-                  <div className="relative mx-auto aspect-[2/3] w-full max-w-[150px] shadow-[0_20px_40px_-18px_rgb(0_0_0_/_0.8)]">
-                    <Image src={b.src} alt={`Copertina del libro ${b.title}`} fill sizes="150px" className="object-cover" />
+                  <div className="relative mx-auto aspect-[2/3] w-full max-w-[110px] shadow-[0_18px_36px_-16px_rgb(0_0_0_/_0.8)]">
+                    <Image src={b.src} alt={`Copertina del libro ${b.title}`} fill sizes="110px" className="object-cover" />
                   </div>
                   <p className="mt-3 font-serif text-[0.98rem] leading-tight text-cream">{b.title}</p>
-                  <p className="mt-1 hidden text-[0.85rem] text-muted italic sm:block">{b.sub}</p>
+                  <p className="mt-1 text-[0.85rem] text-muted italic">{b.sub}</p>
                 </li>
               ))}
             </ul>
-            <blockquote className="reveal mx-auto mt-12 max-w-[560px] text-center">
-              <p className="font-serif text-[1.3rem] leading-relaxed text-cream italic">
-                «Questo libro non offre scorciatoie, né illusioni. Offre qualcosa di più raro: una riconnessione.»
-              </p>
-              <footer className="kicker-muted mt-3">Prof. Camillo Ricordi · Prefazione de Il Nutrimento Eterno</footer>
-            </blockquote>
           </div>
         </section>
 

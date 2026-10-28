@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="flex min-h-dvh flex-col bg-bg">
       <main className="flex-1 px-4 py-14 text-center sm:px-6 sm:py-20">
-        <p className="kicker">Studio Lifespan Nutrition – Longevity Hub</p>
+        <p className="kicker">Lifespan Nutrition – Longevity Hub</p>
         <p className="brand mt-6 text-[clamp(2.6rem,9vw,5rem)] leading-none">
           PRIMEXIA<span className="text-[0.4em] tracking-normal align-super">™</span>
         </p>

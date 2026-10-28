@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://primexia-landing-sviluppo-alex.vercel.app"),
   title: "PRIMEXIA™ Method · Elena Bosi",
   description:
-    "Nutrizione molecolare di precisione. Scarica la guida gratuita PRIMEXIA METHOD™ di Elena Bosi, Studio in Lifespan Nutrition, Verona.",
+    "Nutrizione molecolare di precisione. Scarica la guida gratuita PRIMEXIA METHOD™ di Elena Bosi, Lifespan Nutrition – Longevity Hub, Verona.",
   robots: { index: false, follow: false },
 };
 

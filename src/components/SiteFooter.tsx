@@ -7,7 +7,7 @@ export default function SiteFooter() {
       <Flower size={30} className="mx-auto text-gold" />
       <p className="brand mt-4 text-lg">PRIMEXIA<span className="text-[0.55em] tracking-normal">™</span></p>
       <div className="mx-auto mt-6 max-w-2xl space-y-2 font-sans text-[0.75rem] leading-relaxed tracking-[0.14em] text-muted uppercase">
-        <p>Studio in Lifespan Nutrition – Longevity Hub · Via Madonna del Terraglio 13, 37129 Verona</p>
+        <p>Lifespan Nutrition – Longevity Hub · Via Madonna del Terraglio 13, 37129 Verona</p>
         <ul className="flex flex-col items-center sm:flex-row sm:justify-center sm:gap-4">
           <li>
             <a href="https://www.lifespannutrition.it" className="inline-flex min-h-11 items-center text-gold hover:text-gold-lt" target="_blank" rel="noopener">

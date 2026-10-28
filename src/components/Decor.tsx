@@ -53,7 +53,7 @@ export function GuideCover({ variant }: { variant: Variant }) {
         aria-label={`Copertina della guida gratuita PRIMEXIA METHOD ${label}`}
       >
         <span className="absolute inset-y-0 left-0 w-[6px] bg-gradient-to-r from-[#3a2512] to-transparent" aria-hidden="true" />
-        <p className="font-sans text-[0.6rem] tracking-[0.2em] text-gold uppercase">Studio in Lifespan Nutrition</p>
+        <p className="font-sans text-[0.6rem] tracking-[0.2em] text-gold uppercase">Lifespan Nutrition – Longevity Hub</p>
         <Flower size={36} className="mx-auto mt-6 text-gold" />
         <p className="brand mt-5 text-[1.45rem]">PRIMEXIA<span className="text-[0.5em] tracking-normal">™</span></p>
         <p className="mt-0.5 font-serif text-[0.95rem] tracking-[0.18em] text-gold-lt">Method · {label}</p>

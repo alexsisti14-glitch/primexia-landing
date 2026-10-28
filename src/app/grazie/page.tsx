@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const DISCOVERY_URL = process.env.NEXT_PUBLIC_DISCOVERY_URL || "https://primexia-discovery.netlify.app/";
+const DISCOVERY_URL = process.env.NEXT_PUBLIC_DISCOVERY_STRIPE_URL || "https://buy.stripe.com/3cI6oBdkE0IAcNBdZR4c803";
 
 export default async function Grazie({ searchParams }: { searchParams: Promise<{ s?: string; n?: string }> }) {
   const sp = await searchParams;
@@ -32,7 +32,7 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
         className="px-4 pt-16 pb-16 text-center sm:px-6 sm:pt-20"
         style={{ background: "radial-gradient(ellipse at 50% 0%, rgb(201 169 110 / 0.08), transparent 60%), var(--bg)" }}
       >
-        <p className="kicker fade-up">Studio in Lifespan Nutrition · Longevity Hub · Verona</p>
+        <p className="kicker fade-up">Lifespan Nutrition – Longevity Hub · Verona</p>
         <p className="brand fade-up mt-8 text-[clamp(2.4rem,8vw,4.2rem)] leading-none" style={{ ["--i" as string]: 1 }}>
           PRIMEXIA<span className="text-[0.4em] tracking-normal align-super">™</span>
         </p>
@@ -97,15 +97,15 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
                   <li className="border-l border-[var(--gold-border)] pl-5">
                     <p className="kicker !text-[0.75rem]">Incluso</p>
                     <p className="mt-1 text-[1.1rem] text-body">
-                      <span className="text-cream">Un programma alimentare introduttivo di 7 giorni</span>, per sperimentare
-                      l&apos;impostazione del metodo nella tua quotidianità.
+                      <span className="text-cream">La settimana di prova del metodo PRIMEXIA METHOD™</span>, per
+                      sperimentare l&apos;impostazione del metodo nella tua quotidianità.
                     </p>
                   </li>
                 </ul>
                 <div className="mt-8 flex flex-col items-center gap-2 border-t border-[var(--rule)] pt-8 sm:items-start">
                   <p className="kicker-muted">Investimento</p>
                   <p className="font-serif text-6xl leading-none font-light text-gold">€ 47</p>
-                  <p className="text-[0.95rem] text-muted italic">Pagamento unico · ricevi il link via email</p>
+                  <p className="text-[0.95rem] text-muted italic">Pagamento unico e sicuro con Stripe · 47,00 €</p>
                   <DiscoveryCta href={DISCOVERY_URL} variant={variant} />
                 </div>
               </div>
@@ -113,7 +113,7 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
             <p className="mx-auto mt-6 max-w-[640px] text-center text-[0.92rem] leading-relaxed text-muted italic">
               Discovery è un&apos;esperienza introduttiva: non comprende check metabolico, esami del sangue, piano
               nutrizionale individuale, consulenze o supervisione diretta, che fanno parte del percorso completo PRIMEXIA
-              METHOD™.
+              METHOD™ di tre mesi, proposto dopo la settimana di prova.
             </p>
             <p className="mx-auto mt-10 max-w-[520px] text-center font-serif text-[1.25rem] text-gold-lt italic">
               Il prossimo passo è informarti, capire e scegliere consapevolmente.

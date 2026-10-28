@@ -4,10 +4,9 @@ import { track } from "@/lib/pixel";
 import type { Variant } from "@/content/types";
 
 export default function DiscoveryCta({ href, variant }: { href: string; variant: Variant }) {
+  // Link di pagamento Stripe ufficiale: client_reference_id per sapere da quale landing arriva
   const url = new URL(href);
-  url.searchParams.set("utm_source", "primexia_landing");
-  url.searchParams.set("utm_medium", "thankyou");
-  url.searchParams.set("utm_campaign", `guida_${variant}`);
+  url.searchParams.set("client_reference_id", `guida_${variant}`);
 
   return (
     <a
@@ -15,8 +14,8 @@ export default function DiscoveryCta({ href, variant }: { href: string; variant:
       onClick={() => track("InitiateCheckout", { content_name: "PRIMEXIA Discovery", value: 47, currency: "EUR" })}
       className="btn-gold mt-6"
     >
-      Scopri PRIMEXIA™ Discovery
-      <small>Accesso immediato</small>
+      Acquista PRIMEXIA™ Discovery
+      <small>Pagamento sicuro · Stripe</small>
     </a>
   );
 }

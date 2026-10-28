@@ -24,7 +24,7 @@ export default function Privacy() {
           <section>
             <h2>Titolare del trattamento</h2>
             <p>
-              Elena Bosi · Studio in Lifespan Nutrition – Longevity Hub, Via Madonna del Terraglio 13, 37129 Verona ·
+              Elena Bosi · Lifespan Nutrition – Longevity Hub, Via Madonna del Terraglio 13, 37129 Verona ·
               P.IVA 04541260230 · PEC studionutribosi@pec.it · Email:{" "}
               <a className="underline" href="mailto:studionutrizionebosi@gmail.com">
                 studionutrizionebosi@gmail.com

@@ -4,12 +4,12 @@ export const donna: LandingContent = {
   variant: "donna",
   metaTitle: "PRIMEXIA™ Method Donna · Guida gratuita · Elena Bosi",
   metaDescription:
-    "Ogni donna ha una propria architettura biologica. Scarica gratuitamente la guida PRIMEXIA METHOD™ Donna di Elena Bosi, Studio in Lifespan Nutrition, Verona.",
+    "Ogni donna ha una propria architettura biologica. Scarica gratuitamente la guida PRIMEXIA METHOD™ Donna di Elena Bosi, Lifespan Nutrition – Longevity Hub, Verona.",
   hero: {
-    eyebrow: "Elena Bosi · Studio in Lifespan Nutrition · Verona",
+    eyebrow: "Elena Bosi · Lifespan Nutrition – Longevity Hub · Verona",
     tag: "Donna",
     title: "Ogni donna ha una propria architettura biologica. La nutrizione deve rispettarla.",
-    meta: "Guida gratuita · Nutrizione molecolare di precisione · Verona e Canton Ticino",
+    meta: "Guida gratuita · Oltre 10 anni di esperienza · Verona e Canton Ticino",
     lead: "Non è colpa tua. Il tuo corpo non ha smesso di funzionare. Ha cambiato linguaggio.",
     bullets: [
       "Senti che il tuo corpo non risponde più come prima",
@@ -22,36 +22,36 @@ export const donna: LandingContent = {
   },
   insight: {
     label: "Il problema",
-    title: "Il corpo femminile parla una lingua diversa.",
+    title: "Perché il corpo femminile cambia.",
     intro:
-      "L'organismo femminile ha specificità fisiologiche, ormonali e metaboliche che cambiano nel corso della vita. Un piano uguale per tutte non ne tiene conto.",
+      "La fisiologia femminile evolve nel corso della vita: età fertile, ciclo, perimenopausa e menopausa possono modificare esigenze e priorità nutrizionali. A queste si aggiungono attività fisica, sonno e composizione corporea.",
     items: [
       {
         n: "01",
-        title: "Gli ormoni cambiano le regole",
-        body: "Il ciclo, la gravidanza, la perimenopausa e la menopausa influenzano fame, ritenzione ed energia.",
+        title: "Ormoni",
+        body: "Nelle diverse fasi della vita possono oscillare, influenzando sonno, benessere e distribuzione del grasso corporeo.",
       },
       {
         n: "02",
-        title: "Il grasso si distribuisce in modo diverso",
-        body: "I depositi femminili rispondono a segnali propri. Tagliare le calorie spesso non basta.",
+        title: "Massa muscolare",
+        body: "Con il tempo, soprattutto se ci si muove poco, il muscolo può ridursi. Eppure sostiene movimento, forza e consumo energetico.",
       },
       {
         n: "03",
-        title: "Il cibo non è solo fisiologia",
-        body: "Il legame tra emozioni e alimentazione è reale. L'approccio psicosomatico fa parte del metodo.",
+        title: "Metabolismo",
+        body: "Il modo in cui il corpo usa l'energia dipende anche da muscolo, attività fisica, riposo e condizioni di salute.",
       },
     ],
-    quote: "Molte donne non hanno bisogno di essere controllate. Hanno bisogno di ritrovare regolazione.",
+    quote: "Il corpo che cambia non richiede automaticamente più restrizioni: richiede prima di tutto maggiore comprensione.",
   },
   guide: {
     label: "Dentro la guida",
     title: "Dodici pagine per capire il tuo metabolismo.",
     items: [
-      { title: "Cosa cambia nel corpo femminile", body: "Ormoni, fasi della vita e metabolismo." },
-      { title: "I segnali da leggere", body: "Gonfiore, energia, sonno e fame serale, senza allarmismi." },
-      { title: "Oltre le calorie", body: "Perché contare non basta per capire come ti nutri." },
-      { title: "Nutrizione molecolare di precisione", body: "Cos'è e cosa cambia nell'approccio." },
+      { title: "Perché il corpo femminile cambia", body: "Ormoni, massa muscolare e metabolismo nelle fasi della vita." },
+      { title: "Quando il corpo comincia a parlare", body: "Forma, energia, digestione e sonno, senza allarmismi." },
+      { title: "Il corpo non è una calcolatrice", body: "Perché le calorie contano, ma non raccontano tutto." },
+      { title: "Nutrizione molecolare di precisione", body: "Un modo più individuale di progettare l'alimentazione." },
       { title: "RESET · IGNITE · ANCHOR", body: "Le tre fasi del Method Donna, una per una." },
     ],
   },
@@ -63,7 +63,7 @@ export const donna: LandingContent = {
     start: {
       label: "Il punto di partenza",
       title: "Check metabolico",
-      body: "Due donne della stessa età possono avere bisogni molto diversi. Si parte da composizione corporea, abitudini, storia personale e, quando indicato, esami metabolici del sangue.",
+      body: "Due donne della stessa età possono avere bisogni molto diversi. Si parte da composizione corporea, abitudini, storia personale e, quando indicato, esami ematochimici.",
     },
     phases: [
       {
@@ -89,6 +89,13 @@ export const donna: LandingContent = {
     label: "Storie vere",
     title: "Hai fatto tutto giusto. Anche loro.",
     items: [
+      {
+        label: "Consapevolezza",
+        name: "Elena Molinarolo",
+        meta: "Recensione",
+        quote:
+          "Elena è sempre attenta e disponibile, risponde ad ogni domanda spiegando tutto nel dettaglio. Con lei ho imparato a nutrirmi con consapevolezza e senza privazioni.",
+      },
       {
         label: "Da 80 a 62 kg",
         name: "Eri",
@@ -116,22 +123,16 @@ export const donna: LandingContent = {
       },
       {
         label: "Rapporto con il cibo",
-        name: "Martina B.",
-        meta: "Locarno · Canton Ticino",
-        quote: "Ho smesso di pensare al cibo in modo ansioso. E mi sono guardata allo specchio senza sconforto.",
-      },
-      {
-        label: "Gonfiore",
-        name: "Chiara V.",
-        meta: "46 anni · Brescia",
-        quote: "Mi ero convinta che fosse colpa dell'età. Evidentemente no.",
+        name: "Diana Fabris",
+        meta: "Recensione Google",
+        quote: "Consiglio vivamente Elena Bosi a chiunque desideri intraprendere un percorso di salute e benessere migliorando l'approccio verso il cibo.",
       },
     ],
     note: "Esperienze individuali, non promesse di risultati. I risultati possono variare.",
   },
   bio: {
     paragraphs: [
-      "Mi dedico allo studio della nutrizione, del metabolismo e dei processi che accompagnano il benessere e la longevità. Il mio approccio considera insieme la biologia dell'organismo, le abitudini e la storia di ogni persona.",
+      "Da oltre 10 anni mi dedico allo studio della nutrizione, del metabolismo e dei processi che accompagnano il benessere e la longevità. Il mio approccio considera insieme la biologia dell'organismo, le abitudini e la storia di ogni persona.",
       "Ho costruito il mio metodo osservando ogni giorno in studio quello che i modelli tradizionali non riuscivano a spiegare: donne che facevano tutto giusto e non vedevano risultati. Non per mancanza di disciplina, ma perché il loro sistema biologico aveva perso la capacità di rispondere.",
     ],
   },
