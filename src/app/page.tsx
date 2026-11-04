@@ -13,7 +13,7 @@ export default function Home() {
     <div className="flex min-h-dvh flex-col bg-bg">
       <HomeJsonLd />
       <main className="flex-1 px-4 py-14 text-center sm:px-6 sm:py-20">
-        <p className="kicker">Lifespan Nutrition – Longevity Hub</p>
+        <p className="kicker">Studio in Lifespan Nutrition – Longevity Hub</p>
         <h1>
           <span className="brand mt-6 block text-[clamp(2.6rem,9vw,5rem)] leading-none">
             PRIMEXIA<span className="text-[0.4em] tracking-normal align-super">™</span>
@@ -27,7 +27,7 @@ export default function Home() {
         </p>
         <p className="mx-auto mt-5 max-w-[56ch] text-[1.02rem] text-body">
           PRIMEXIA™ METHOD è il metodo proprietario di nutrizione molecolare di precisione ideato da Elena Bosi, fondatrice di
-          Lifespan Nutrition – Longevity Hub a Verona. Tre fasi, RESET, IGNITE e ANCHOR, costruite sulla biologia della donna e
+          Studio in Lifespan Nutrition – Longevity Hub a Verona. Tre fasi, RESET, IGNITE e ANCHOR, costruite sulla biologia della donna e
           dell&apos;uomo. Scegli la guida gratuita adatta a te.
         </p>
         <div className="mx-auto mt-10 max-w-[520px] border border-[var(--gold-border)]">

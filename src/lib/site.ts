@@ -3,7 +3,7 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://primexia.i
 
 export const BRAND = "PRIMEXIA™ METHOD";
 export const ORG = {
-  name: "Lifespan Nutrition – Longevity Hub",
+  name: "Studio in Lifespan Nutrition – Longevity Hub",
   founder: "Elena Bosi",
   vat: "04541260230",
   email: "studionutrizionebosi@gmail.com",
@@ -21,4 +21,4 @@ export const ORG = {
   ],
 };
 
-export const TRADEMARK = "Marchio registrato EUIPO n. 302026000062725 · UIBM 3 aprile 2026";
+export const TRADEMARK = "PRIMEXIA™ · Marchio depositato presso UIBM · Domanda n. 302026000062725";

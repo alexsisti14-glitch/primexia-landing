@@ -412,7 +412,7 @@ export default function Questionnaire({ content }: { content: LandingContent }) 
                 {...register("marketing")}
               />
               <span>
-                Acconsento a ricevere comunicazioni e contenuti da Lifespan Nutrition – Longevity Hub.{" "}
+                Acconsento a ricevere comunicazioni e contenuti da Studio in Lifespan Nutrition – Longevity Hub.{" "}
                 <span className="text-muted">(facoltativo)</span>
               </span>
             </label>

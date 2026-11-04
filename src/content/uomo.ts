@@ -6,10 +6,10 @@ export const uomo: LandingContent = {
   metaDescription:
     "Metabolismo dopo i 40, grasso addominale, energia che cala: scarica la guida gratuita PRIMEXIA™ METHOD Uomo di Elena Bosi. Nutrizione molecolare di precisione.",
   hero: {
-    eyebrow: "Elena Bosi · Lifespan Nutrition – Longevity Hub · Verona",
+    eyebrow: "Elena Bosi · Studio in Lifespan Nutrition – Longevity Hub · Verona",
     tag: "Uomo",
     title: "Il tuo corpo ha una propria architettura biologica. La nutrizione deve rispettarla.",
-    meta: "Guida gratuita · Oltre 10 anni di esperienza · Verona e Canton Ticino",
+    meta: "Guida gratuita · Oltre 10 anni di esperienza",
     lead: "Dopo i 40 anni ormoni, muscolo e metabolismo cambiano. Non è una trasformazione inevitabile: è il momento giusto per rivedere abitudini e priorità.",
     bullets: [
       "Il girovita cresce anche quando il peso resta fermo",
@@ -105,7 +105,7 @@ export const uomo: LandingContent = {
       {
         label: "Prima settimana",
         name: "Thomas K.",
-        meta: "CEO · Lugano",
+        meta: "CEO",
         quote: "Sono abituato a misurare tutto: meno 3,4 kg. Non ho avuto la sensazione di fare sacrifici. Ho mangiato, lavorato, viaggiato.",
       },
       {

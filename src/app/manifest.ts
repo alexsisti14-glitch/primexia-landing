@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "PRIMEXIA™ METHOD · Elena Bosi",
     short_name: "PRIMEXIA",
-    description: "Nutrizione molecolare di precisione · Lifespan Nutrition – Longevity Hub, Verona",
+    description: "Nutrizione molecolare di precisione · Studio in Lifespan Nutrition – Longevity Hub, Verona",
     start_url: "/",
     display: "standalone",
     background_color: "#0e0805",

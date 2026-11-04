@@ -29,11 +29,11 @@ export const metadata: Metadata = {
     template: "%s | PRIMEXIA™ METHOD",
   },
   description:
-    "PRIMEXIA™ METHOD è il metodo di nutrizione molecolare di precisione di Elena Bosi, Lifespan Nutrition – Longevity Hub, Verona. Tre fasi RESET, IGNITE, ANCHOR. Guida gratuita per donna e per uomo.",
+    "PRIMEXIA™ METHOD è il metodo di nutrizione molecolare di precisione di Elena Bosi, Studio in Lifespan Nutrition – Longevity Hub, Verona. Tre fasi RESET, IGNITE, ANCHOR. Guida gratuita per donna e per uomo.",
   applicationName: "PRIMEXIA™ METHOD",
   authors: [{ name: "Elena Bosi", url: "https://www.lifespannutrition.it" }],
   creator: "Elena Bosi",
-  publisher: "Lifespan Nutrition – Longevity Hub",
+  publisher: "Studio in Lifespan Nutrition – Longevity Hub",
   keywords: [
     "PRIMEXIA",
     "PRIMEXIA Method",

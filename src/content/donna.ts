@@ -6,10 +6,10 @@ export const donna: LandingContent = {
   metaDescription:
     "Gonfiore, menopausa, peso che non cede: scarica la guida gratuita PRIMEXIA™ METHOD Donna di Elena Bosi. Nutrizione molecolare di precisione, Verona.",
   hero: {
-    eyebrow: "Elena Bosi · Lifespan Nutrition – Longevity Hub · Verona",
+    eyebrow: "Elena Bosi · Studio in Lifespan Nutrition – Longevity Hub · Verona",
     tag: "Donna",
     title: "Ogni donna ha una propria architettura biologica. La nutrizione deve rispettarla.",
-    meta: "Guida gratuita · Oltre 10 anni di esperienza · Verona e Canton Ticino",
+    meta: "Guida gratuita · Oltre 10 anni di esperienza",
     lead: "Non è colpa tua. Il tuo corpo non ha smesso di funzionare. Ha cambiato linguaggio.",
     bullets: [
       "Senti che il tuo corpo non risponde più come prima",

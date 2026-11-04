@@ -38,7 +38,6 @@ export function baseGraph() {
       },
       areaServed: [
         { "@type": "Country", name: "Italia" },
-        { "@type": "AdministrativeArea", name: "Canton Ticino" },
       ],
       sameAs: ORG.sameAs,
       brand: { "@id": brandId },
@@ -49,7 +48,7 @@ export function baseGraph() {
       name: "Elena Bosi",
       jobTitle: "Psychosomatic Nutrition Counselor · Lifespan Nutrition Specialist",
       description:
-        "Fondatrice di PRIMEXIA™ METHOD e di Lifespan Nutrition – Longevity Hub a Verona. Oltre 10 anni di esperienza in nutrizione, metabolismo e longevità.",
+        "Fondatrice di PRIMEXIA™ METHOD e di Studio in Lifespan Nutrition – Longevity Hub a Verona. Oltre 10 anni di esperienza in nutrizione, metabolismo e longevità.",
       worksFor: { "@id": orgId },
       image: `${SITE_URL}/img/elena-bosi.webp`,
       sameAs: ["https://www.linkedin.com/in/elena-bosi-b798421a3/", "https://www.instagram.com/studioinlifespan_nutrition/"],
@@ -67,7 +66,7 @@ export function baseGraph() {
       name: "PRIMEXIA™ METHOD",
       alternateName: ["PRIMEXIA Method", "PRIMEXIA"],
       description:
-        "Metodo proprietario di nutrizione molecolare di precisione in tre fasi (RESET, IGNITE, ANCHOR), con versioni dedicate per donna e per uomo. Marchio registrato EUIPO n. 302026000062725.",
+        "Metodo proprietario di nutrizione molecolare di precisione in tre fasi (RESET, IGNITE, ANCHOR), con versioni dedicate per donna e per uomo. Marchio depositato presso UIBM, domanda n. 302026000062725.",
       logo: `${SITE_URL}/apple-icon.png`,
     },
     {
@@ -136,7 +135,7 @@ export function LandingJsonLd({ c, path, title, description }: { c: LandingConte
             serviceType: "Percorso di nutrizione molecolare di precisione",
             provider: { "@id": orgId },
             brand: { "@id": brandId },
-            areaServed: ["Italia", "Canton Ticino"],
+            areaServed: ["Italia"],
             audience: { "@type": "PeopleAudience", audienceType: c.variant === "donna" ? "Donne adulte" : "Uomini adulti" },
             description: `Percorso di tre mesi in tre fasi (RESET, IGNITE, ANCHOR) con check metabolico, cinque consulenze con Elena Bosi e supervisione medica per gli aspetti di competenza. ${c.method.intro}`,
           },

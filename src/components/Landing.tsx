@@ -7,9 +7,9 @@ import SiteFooter from "./SiteFooter";
 import { Flower, GuideCover } from "./Decor";
 
 const BOOKS = [
-  { src: "/img/libro-nutrimento-eterno.webp", title: "Il Nutrimento Eterno", sub: "Dal fuoco primordiale alla longevità" },
-  { src: "/img/libro-primordialita-molecolare.webp", title: "La primordialità molecolare", sub: "Riscoprire la radice biologica del nutrimento" },
-  { src: "/img/libro-orientamento-metabolico.webp", title: "Orientamento Metabolico", sub: "Scritti di biologia quotidiana" },
+  { src: "/img/libro-nutrimento-eterno.webp", title: "Il Nutrimento Eterno", sub: "Dal fuoco primordiale alla longevità", url: "https://www.amazon.it/dp/B0GW7BWWWF" },
+  { src: "/img/libro-primordialita-molecolare.webp", title: "La primordialità molecolare", sub: "Riscoprire la radice biologica del nutrimento", url: "https://www.amazon.it/dp/B0G5GSXT8G" },
+  { src: "/img/libro-orientamento-metabolico.webp", title: "Orientamento Metabolico", sub: "Scritti di biologia quotidiana", url: "https://amzn.eu/d/0dGM8c9j" },
 ];
 
 function SectionHead({ label, title, className = "" }: { label: string; title: string; className?: string }) {
@@ -32,7 +32,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
 
       {/* ---------- Testata (stile pagine PRIMEXIA) ---------- */}
       <header className="bg-bg-deep px-4 pt-6 pb-6 text-center sm:px-6 sm:pt-7 sm:pb-8">
-        <p className="kicker hidden sm:block">Lifespan Nutrition – Longevity Hub · Verona</p>
+        <p className="kicker hidden sm:block">Studio in Lifespan Nutrition – Longevity Hub · Verona</p>
         <div className="relative mx-auto size-[56px] sm:mt-5 sm:size-[68px] overflow-hidden rounded-full border border-[var(--gold-border)]">
           <Image src="/img/elena-bosi-volto.webp" alt="Elena Bosi" fill sizes="68px" className="object-cover" priority />
         </div>
@@ -118,8 +118,8 @@ export default function Landing({ content: c }: { content: LandingContent }) {
           <figure className="reveal relative mx-auto mt-16 max-w-[560px] overflow-hidden border border-[var(--gold-border)]">
             <div className="relative aspect-[4/5]">
               <Image
-                src="/img/risposte-biologiche.webp"
-                alt="Una donna e un uomo affiancati, con una trama dorata che evidenzia muscoli e metabolismo"
+                src={`/img/${c.variant}-risposte.webp`}
+                alt={c.variant === "donna" ? "Due donne affiancate, con una trama dorata che evidenzia muscoli e metabolismo" : "Due uomini affiancati, con una trama dorata che evidenzia muscoli e metabolismo"}
                 fill
                 sizes="(max-width: 640px) 100vw, 560px"
                 className="object-cover"
@@ -214,8 +214,8 @@ export default function Landing({ content: c }: { content: LandingContent }) {
           <figure className="reveal relative mx-auto mt-16 max-w-[560px] overflow-hidden border border-[var(--gold-border)]">
             <div className="relative aspect-square">
               <Image
-                src="/img/architettura-nutrizionale.webp"
-                alt="Una donna e un uomo schiena contro schiena tra molecole dorate"
+                src={`/img/${c.variant}-architettura.webp`}
+                alt={c.variant === "donna" ? "Una donna tra molecole dorate" : "Un uomo tra molecole dorate"}
                 fill
                 sizes="(max-width: 640px) 100vw, 560px"
                 className="object-cover object-top"
@@ -287,7 +287,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
                 <br />
                 Lifespan Nutrition Specialist
                 <br />
-                Lifespan Nutrition – Longevity Hub · Verona
+                Studio in Lifespan Nutrition – Longevity Hub · Verona
               </p>
               {c.bio.paragraphs.map((p) => (
                 <p key={p} className="mt-5 text-[1.08rem] text-body">
@@ -295,7 +295,7 @@ export default function Landing({ content: c }: { content: LandingContent }) {
                 </p>
               ))}
               <p className="mt-5 text-[1.08rem] text-body">
-                Il metodo è un marchio registrato e viene seguito con supervisione medica per gli aspetti di competenza.
+                Il marchio PRIMEXIA™ è depositato presso UIBM e il metodo viene seguito con supervisione medica per gli aspetti di competenza.
               </p>
             </div>
           </div>
@@ -310,7 +310,16 @@ export default function Landing({ content: c }: { content: LandingContent }) {
               <div className="text-center sm:text-left">
                 <p className="font-serif text-[1.7rem] leading-tight text-gold-lt">{BOOKS[0].title}</p>
                 <p className="mt-1 text-[1rem] text-muted italic">Dal fuoco primordiale alla longevità</p>
-                <blockquote className="mt-6 border-l-0 sm:border-l sm:border-[var(--gold-border)] sm:pl-5">
+                <a
+                  href={BOOKS[0].url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-line mt-4 border border-[var(--gold-border)] !px-5 !text-gold hover:!text-gold-lt"
+                  aria-label={`Acquista ${BOOKS[0].title} su Amazon (si apre in una nuova scheda)`}
+                >
+                  Acquista su Amazon ↗
+                </a>
+                                <blockquote className="mt-6 border-l-0 sm:border-l sm:border-[var(--gold-border)] sm:pl-5">
                   <p className="font-serif text-[1.25rem] leading-relaxed text-cream italic">
                     «Questo libro non offre scorciatoie, né illusioni. Offre qualcosa di più raro: una riconnessione.»
                   </p>
@@ -326,6 +335,15 @@ export default function Landing({ content: c }: { content: LandingContent }) {
                   </div>
                   <p className="mt-3 font-serif text-[0.98rem] leading-tight text-cream">{b.title}</p>
                   <p className="mt-1 text-[0.85rem] text-muted italic">{b.sub}</p>
+                  <a
+                    href={b.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-line mt-2 border border-[var(--gold-border)] !px-3 !text-[0.68rem] !text-gold hover:!text-gold-lt"
+                    aria-label={`Acquista ${b.title} su Amazon (si apre in una nuova scheda)`}
+                  >
+                    Acquista su Amazon ↗
+                  </a>
                 </li>
               ))}
             </ul>

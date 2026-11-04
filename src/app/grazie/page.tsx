@@ -32,7 +32,7 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
         className="px-4 pt-16 pb-16 text-center sm:px-6 sm:pt-20"
         style={{ background: "radial-gradient(ellipse at 50% 0%, rgb(201 169 110 / 0.08), transparent 60%), var(--bg)" }}
       >
-        <p className="kicker fade-up">Lifespan Nutrition – Longevity Hub · Verona</p>
+        <p className="kicker fade-up">Studio in Lifespan Nutrition – Longevity Hub · Verona</p>
         <p className="brand fade-up mt-8 text-[clamp(2.4rem,8vw,4.2rem)] leading-none" style={{ ["--i" as string]: 1 }}>
           PRIMEXIA<span className="text-[0.4em] tracking-normal align-super">™</span>
         </p>
