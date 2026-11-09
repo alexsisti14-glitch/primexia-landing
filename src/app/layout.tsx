@@ -20,7 +20,7 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-const PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || "492276469982334";
+const PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || "1618460813413852";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

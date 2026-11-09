@@ -17,7 +17,7 @@ Next.js 15 (App Router) · Tailwind CSS 4 · TypeScript · React Hook Form · Lu
 Vedi `.env.example`. Senza GHL configurato il form risponde con errore (nessun lead perso in silenzio).
 
 ## Tracking
-- Meta Pixel `492276469982334`, caricato in consent mode: gli eventi partono solo dopo "Accetta" nel banner cookie.
+- Meta Pixel `1618460813413852`, caricato in consent mode: gli eventi partono solo dopo "Accetta" nel banner cookie.
 - Eventi: `PageView`, `ViewContent` (inizio questionario), `Lead` (invio, con `eventID` per deduplica CAPI), `InitiateCheckout` (click Discovery).
 
 ## GHL
