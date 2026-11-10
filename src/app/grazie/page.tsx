@@ -17,7 +17,7 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
   const name = (sp.n ?? "").replace(/[^\p{L}\s'-]/gu, "").slice(0, 30).trim();
 
   const steps = [
-    { n: "01", title: "Controlla la tua email", body: "La guida arriva in pochi minuti. Se non la vedi, guarda anche in Promozioni o Spam." },
+    { n: "01", title: "Controlla la tua email", body: "La guida arriva in pochi minuti. Se non la vedi, guarda anche in Promozioni o Spam, oppure scaricala qui sopra." },
     { n: "02", title: "Leggila con calma", body: "Dodici pagine per capire cosa sta cambiando nel tuo corpo e come lavora il metodo." },
     {
       n: "03",
@@ -46,6 +46,14 @@ export default async function Grazie({ searchParams }: { searchParams: Promise<{
         <p className="fade-up mx-auto mt-5 max-w-[48ch] text-[1.2rem] text-body italic" style={{ ["--i" as string]: 4 }}>
           Ti abbiamo inviato via email la guida gratuita PRIMEXIA METHOD™ {variant === "donna" ? "Donna" : "Uomo"}.
         </p>
+        <a
+          href={`/guide/primexia-method-${variant}-guida.pdf`}
+          download
+          className="btn-gold fade-up mt-8 inline-flex"
+          style={{ ["--i" as string]: 5 }}
+        >
+          Scarica subito la guida · PDF
+        </a>
       </header>
 
       <main>
